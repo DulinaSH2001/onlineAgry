@@ -33,18 +33,18 @@
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Home</a>
+							<a class="nav-link" href="index.php">Home</a>
 						</li>
-						<li><a class="nav-link" href="shop.html">Shop</a></li>
-						<li><a class="nav-link" href="about.html">About us</a></li>
-						<li><a class="nav-link" href="services.html">Services</a></li>
+						<li><a class="nav-link" href="shop.php">Shop</a></li>
+						<li><a class="nav-link" href="about.php">About us</a></li>
+						<li><a class="nav-link" href="services.php">Services</a></li>
 						<!-- <li><a class="nav-link" href="blog.html">Blog</a></li> -->
-						<li><a class="nav-link" href="contact.html">Contact us</a></li>
+						<li><a class="nav-link" href="contact.php">Contact us</a></li>
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="#"><img src="images/user.svg"></a></li>
-						<li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
+						<li><a class="nav-link" href="userprofile.php"><img src="images/user.svg"></a></li>
+						<li><a class="nav-link" href="cart.php"><img src="images/cart.svg"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -58,9 +58,9 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+								<h1>Modern technology <span clsas="d-block">agriculcure product</span></h1>
+								<p class="mb-4">if you wont to make best paddy feels ,you bust be use our product</p>
+								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><a href="aboutus.php" class="btn btn-white-outline">Explore</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -87,7 +87,7 @@
 					<!-- End Column 1 -->
 
 					<!-- Start Column 2 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+					<!-- <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
 						<a class="product-item" href="cart.html">
 							<img src="images/product-1.png" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Nordic Chair</h3>
@@ -101,7 +101,7 @@
 					<!-- End Column 2 -->
 
 					<!-- Start Column 3 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+					<!-- <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
 						<a class="product-item" href="cart.html">
 							<img src="images/product-2.png" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Kruzo Aero Chair</h3>
@@ -111,11 +111,11 @@
 								<img src="images/cross.svg" class="img-fluid">
 							</span>
 						</a>
-					</div>
+					</div> -->
 					<!-- End Column 3 -->
 
 					<!-- Start Column 4 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+					<!-- <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
 						<a class="product-item" href="cart.html">
 							<img src="images/product-3.png" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Ergonomic Chair</h3>
@@ -125,7 +125,7 @@
 								<img src="images/cross.svg" class="img-fluid">
 							</span>
 						</a>
-					</div>
+					</div>  -->
 					<!-- End Column 4 -->
 
 				</div>
