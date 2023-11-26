@@ -225,7 +225,7 @@
 		<!-- End We Help Section -->
 
 		<!-- Start Popular Product -->
-		<div class="popular-product">
+		<!-- <div class="popular-product">
 			<div class="container">
 				<div class="row">
 
@@ -270,7 +270,7 @@
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- End Popular Product -->
 
 		<!-- Start Testimonial Slider -->
