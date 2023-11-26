@@ -40,6 +40,9 @@
 						<li><a class="nav-link" href="services.php">Services</a></li>
 						<!-- <li><a class="nav-link" href="blog.html">Blog</a></li> -->
 						<li><a class="nav-link" href="contact.php">Contact us</a></li>
+						<li><a class="nav-link" href="Login.php">Login</a></li>
+						<li><a class="nav-link" href="signin.php">SignIn</a></li>
+						
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
