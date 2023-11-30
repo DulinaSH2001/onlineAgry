@@ -1,3 +1,7 @@
+<?php
+include 'connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -29,6 +33,20 @@
         <div class="loader"></div>
     </div>
 
+    <!-- create cookie -->
+    <?php
+    // Check if the user has a cookie
+    if (!isset($_COOKIE['user_id'])) {
+        // Generate a unique user ID
+        $user_id = 'us' . substr(uniqid(), 0, 6);
+
+
+        setcookie('user_id', $user_id, time() + (30 * 24 * 60 * 60), '/');
+    } else {
+
+        $user_id = $_COOKIE['user_id'];
+    } ?>
+
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
@@ -40,11 +58,7 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <?php
 
-            $sql = "Select sum(tprice) as total from cart where id =?";
-
-            ?>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
@@ -123,10 +137,15 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div> -->
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-
-                            </div>
+                            <?php if (!isset($_SESSION)): ?>
+                                <!-- If user is logged in, display their name -->
+                                <a href="profile.php"><i class="fa fa-user"></i>
+                                    <?php echo $userName; ?>
+                                </a>
+                            <?php else: ?>
+                                <!-- If user is not logged in, display login link -->
+                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -203,10 +222,7 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
@@ -216,7 +232,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>0352282049/0718318313</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
