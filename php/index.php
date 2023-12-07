@@ -1,7 +1,3 @@
-<?php
-include 'connect.php';
-?>
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -192,7 +188,7 @@ include 'connect.php';
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span> categories</span>
                         </div>
                         <ul>
                             <li><a href="#">Fresh Meat</a></li>
@@ -206,6 +202,8 @@ include 'connect.php';
                             <li><a href="#">Papayaya & Crisps</a></li>
                             <li><a href="#">Oatmeal</a></li>
                             <li><a href="#">Fresh Bananas</a></li>
+
+                            <li><a href="#"> tracter </a></li>
                         </ul>
                     </div>
                 </div>
@@ -295,6 +293,17 @@ include 'connect.php';
                             <li data-filter=".fresh-meat">Fresh Meat</li>
                             <li data-filter=".vegetables">Vegetables</li>
                             <li data-filter=".fastfood">Fastfood</li>
+
+                            <li class="active" data-filter><a href="#">fast food </a></li>
+
+
+                            <li> <a href="sihala mayam walat#"> this is the ne w main method for our web site </a> </li>
+
+
+
+
+
+
                         </ul>
                     </div>
                 </div>
