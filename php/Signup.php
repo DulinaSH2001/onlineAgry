@@ -80,73 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Products</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <style>
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 8px 0px 0px 8px;
-            
-        }
-        h3{
-            color:#070f34;
-            font-family: monospace;
-            font-size: 25px;
-        }
-      
-        .add-product {
-            margin-bottom: 20px;
-        }
-
-       
-        .form-group {
-            margin-bottom: 10px;
-        }
-
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-      
-        input[type="text"],
-        select,
-        input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        
-        .btn {
-            background-color: #08154c;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 26px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: #08374c;
-        }
-
-        /* Styles for error messages */
-        .error {
-            color: red;
-            margin-bottom: 10px;
-        }
-
-        /* Styles for success messages */
-        .success {
-            color: green;
-            margin-bottom: 10px;
-        }
-    </style>
+    
 
 </head>
 
