@@ -65,13 +65,14 @@
             $firstname = $_POST['Fname'];
             $lastname = $_POST['Lname'];
             $email = $_POST['email'];
+            $dob = $_POST['dob'];
 
             $username = $_POST['username'];
             $password = $_POST['password'];
             $tel = $_POST['tel'];
 
             // Update the user's profile in the database
-            $sql = "UPDATE users SET fname = '$firstname', lname = '$lastname', phone = '$tel', email = '$email', password = '$password', username = '$username' WHERE userid = '$id'";
+            $sql = "UPDATE users SET fname = '$firstname', lname = '$lastname', phone = '$tel', email = '$email', password = '$password',dob = '$dob', username = '$username' WHERE userid = '$id'";
 
             if (mysqli_query($connect, $sql)) {
                 header("Location: userprofile.php");

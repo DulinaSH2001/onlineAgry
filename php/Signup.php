@@ -1,73 +1,6 @@
 <?php
 // Include the database connection file
 include 'connect.php';
-
-session_start();
-$devid = $_SESSION['u']['ID'];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_FILES["logo"]) && isset($_FILES["screenshot"])) {
-        // Get form data
-       
-        $name = $_POST["name"];
-        $category = $_POST["category"];
-        $subcategory = $_POST["subcategory"];
-        $description = $_POST["description"];
-        $price = $_POST["price"];
-        $logo = $_FILES["logo"]["tmp_name"];
-        $screenshots = $_FILES["screenshot"]["tmp_name"];
-
-        // Prepare logo data for insertion
-        $logoData = file_get_contents($logo);
-        $logoData = mysqli_real_escape_string($connect, $logoData);
-
-        // Prepare APK data for insertion (only for App category)
-        $apkData = '';
-        if (isset($_FILES["apk"])) {
-            $apk = $_FILES["apk"]["tmp_name"];
-            $apkData = file_get_contents($apk);
-            $apkData = mysqli_real_escape_string($connect, $apkData);
-        }
-
-        // Generate a unique ID for the product
-        $id = uniqid('app');
-
-        // Prepare and execute the SQL query
-        $sql = "INSERT INTO apps (ID,devID, Name, Price, Logo, Category, Subcategory,Description";
-        $values = "VALUES ('$id','$devid' ,'$name', '$price', '$logoData', '$category', '$subcategory','$description'";
-
-            $screenshotsData = array();
-            foreach ($screenshots as $screenshot) {
-                $screenshotData = file_get_contents($screenshot);
-                $screenshotData = mysqli_real_escape_string($connect, $screenshotData);
-                $screenshotsData[] = $screenshotData;
-            }
-            $screenshotsData = implode(",", $screenshotsData);
-
-            $sql .= ", Screenshots, APK";
-            $values .= ", '$screenshotsData', '$apkData'";
-        
-
-            $sql .= ") " . $values . ");";
-        
-        $rs = mysqli_query($connect, $sql);
-
-        $query = "SELECT * FROM apps WHERE devID = '$devid'";
-        $rs1 = mysqli_query($connect, $query);
-
-        if ($row = $rs1->fetch_assoc()) {
-            $appID = $id;
-            $query1 = "INSERT INTO appstatus (appID, devID, Security, Payment, headadmin) VALUES ('$appID', '$devid','NO','NO','NO');";
-             mysqli_query($connect, $query1);
-         
-            header("Location: homepage.php");
-          
-        } else {
-            // Error handling
-            echo "Error: " . $sql . "<br>" . mysqli_error($connect);
-        }
-    }
-}
 ?>
 
 
@@ -80,109 +13,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Products</title>
     <link rel="stylesheet" href="../css/styles.css">
-    
+
 
 </head>
 
 <body>
-    <?php 
-    include 'header.php';
-    ?>
-    
-    <div class="addappsframe">
+    <form action="Signup.php" method ='post'>
+        <label for="firstname">First name:</label>
+        <input type="text" name="Fname"></br>
 
-        <div class="container">
-            <section class="add-product">
-                <form action="Add_apps.php" method="post" enctype="multipart/form-data">
-                    <h3>Product Details</h3>
+        <label for="Lastname">Last name:</label>
+        <input type="text" name="Lname"></br>
 
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="box" required maxlength="50">
-                    </div>
+        <label for="dob">Date of birth:</label>
+        <input type="date" name="dob"></br>
 
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select name="category" id="category">
-                            <option value="none" selected></option>
-                            <option value="Game">Game</option>
-                            <option value="App">App</option>
-                        </select>
-                    </div>
+        <label for="email">Email:</label>
+        <input type="text" name="email"></br>
 
-                    <div class="form-group game">
-                        <label for="game">Game Category</label>
-                        <select name="subcategory" id="game">
-                            <option value="action">Action</option>
-                            <option value="sport">Sport</option>
-                            <option value="kids">Kids</option>
-                            <option value="puzzle">Puzzle</option>
-                        </select>
-                    </div>
+        <label for="Mobile">Mobile number :</label>
+        <input type="tel" name="tel"></br>
 
-                    <div class="form-group app">
-                        <label for="app">App Category</label>
-                        <select name="subcategory" id="app">
-                            <option value="shopping">Shopping</option>
-                            <option value="entertainment">Entertainment</option>
-                            <option value="social-media">Social Media</option>
-                            <option value="lifestyle">Lifestyle</option>
-                            <option value="education">Education</option>
-                        </select>
-                    </div>
+        <label for="Username">Username:</label>
+        <input type="text" name="username"></br>
 
-                    <div class="form-group">
-                        <label for="price">App Price</label>
-                        <input type="text" name="price" id="price" class="box" required maxlength="10" min="0"
-                            max="9999999">
-                    </div>
-                    <div class="form-group">
-                        <label for="screenshot">Description</label>
-                        <input type="text" name="description" id="desc" class="box" required >
-                    </div>
+        <label for="Password">Password :</label>
+        <input type="text" name="password"></br>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="reset">Reset</button>
+    </form>
+    <?php
 
-                    <div class="form-group">
-                        <label for="logo">Logo</label>
-                        <input type="file" name="logo" id="logo" class="box" required accept="image/*">
-                    </div>
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  
 
-                    <div class="form-group">
-                        <label for="screenshot">App Screenshot</label>
-                        <input type="file" name="screenshot[]" id="screenshot" class="box" required accept="image/*"
-                            multiple>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="apk">Add apk or ios file</label>
-                        <input type="file" name="apk" id="apk" class="box-sizing" required accept="apk/*">
-                    </div>
+        $user_id = 'us' . substr(uniqid(), 0, 6);
+        $firstname = $_POST['Fname'];
+        $lastname = $_POST['Lname'];
+        $email = $_POST['email'];
+        $dob = $_POST['dob'];
 
-                    <input type="submit" value="Add Product" name="add_product" class="btn">
-                </form>
-            </section>
-        </div>
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $tel = $_POST['tel'];
 
-    </div>
- 
-    <script>
-        var category = document.getElementById("category");
-        var game = document.querySelector(".game");
-        var app = document.querySelector(".app");
+        // Update the user's profile in the database
+        $sql = "INSERT INTO users (userid ,fname, lname,dob, phone, email, password, username) VALUES ('$user_id','$firstname', '$lastname','$dob', '$tel', '$email', '$password', '$username')";
 
-        category.addEventListener("change", function () {
-            if (category.value === "Game") {
-                game.style.display = "block";
-                app.style.display = "none";
-            } else if (category.value === "App") {
-                game.style.display = "none";
-                app.style.display = "block";
-            } else {
-                game.style.display = "none";
-                app.style.display = "none";
-            }
-        });
-    </script>
-    
+        if (mysqli_query($connect, $sql)) {
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($connect);
+        }
+    } ?>
+
+
 </body>
 
 </html>
