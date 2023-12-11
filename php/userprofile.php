@@ -10,17 +10,17 @@
 <body>
 
 
-<?php
+    <?php
     include 'connect.php';
     include 'header1.php';
     session_start();
 
-   
+
 
 
     $id = $_SESSION['u']['userid'];
 
-   
+
 
     // Fetch the user's information from the database
     $sql = "SELECT * FROM users WHERE userid = '$id'";
@@ -43,7 +43,7 @@
         <input type="text" value="<?php echo $lname ?>" name="Lname"></br>
 
         <label for="dob">Date of birth:</label>
-        <input type="date" value="<?php echo $dob ?>"  name="dob"></br>
+        <input type="date" value="<?php echo $dob ?>" name="dob"></br>
 
         <label for="email">Email:</label>
         <input type="text" value="<?php echo $email ?>" name="email"></br>
@@ -58,28 +58,28 @@
         <input type="text" value="<?php echo $password ?>" name="password"></br>
         <button type="submit" class="btn btn-primary">Update Profile</button>
         <button type="reset">Cancel</button>
-<?php 
+        <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve and sanitize the updated form data
-    $firstname = $_POST['Fname'];
-    $lastname = $_POST['Lname'];
-    $email = $_POST['email'];
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $tel = $_POST['tel'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Retrieve and sanitize the updated form data
+            $firstname = $_POST['Fname'];
+            $lastname = $_POST['Lname'];
+            $email = $_POST['email'];
 
-    // Update the user's profile in the database
-    $sql = "UPDATE users SET fname = '$firstname', lname = '$lastname', phone = '$tel', email = '$email', password = '$password', username = '$username' WHERE userid = '$id'";
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $tel = $_POST['tel'];
 
-    if (mysqli_query($connect, $sql)) {
-        header("Location: userprofile.php");
-        exit();
-    } else {
-        echo "Error: " . mysqli_error($connect);
-    }
-}?>
+            // Update the user's profile in the database
+            $sql = "UPDATE users SET fname = '$firstname', lname = '$lastname', phone = '$tel', email = '$email', password = '$password', username = '$username' WHERE userid = '$id'";
+
+            if (mysqli_query($connect, $sql)) {
+                header("Location: userprofile.php");
+                exit();
+            } else {
+                echo "Error: " . mysqli_error($connect);
+            }
+        } ?>
 
 
 
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </form>
 
-   
+
 
 
 
