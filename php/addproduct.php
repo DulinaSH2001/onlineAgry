@@ -14,7 +14,7 @@
                 type: "POST",
                 data: { categoryId: categoryId },
                 success: function (data) {
-                   
+
                     $("#subcategory").html(data);
                 }
             });
@@ -27,7 +27,7 @@
     <h2>Add Product with Images</h2>
 
     <form enctype="multipart/form-data" action="addproduct.php" method="post">
-        <!-- Product Information -->
+        
         <label for="product_name">Product Name:</label>
         <input type="text" id="product_name" name="name" required><br>
 
@@ -51,7 +51,7 @@
 
         <label for="category">Category:</label>
         <select name="category" id="category" onchange="updateSubcategories()">
-        //ajex using to get sub catogery 
+            //ajex using to get sub catogery
             <?php foreach ($categories as $category): ?>
                 <option value="<?php echo $category['catid']; ?>">
                     <?php echo $category['categoryname']; ?>
@@ -61,22 +61,77 @@
 
         <label for="subcategory">Subcategory:</label>
         <select name="subcategory" id="subcategory" required>
-            <!-- Subcategory options will be populated dynamically using AJAX -->
+          
         </select>
 
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" step="0.01" required><br>
 
         <label for="price">Qty:</label>
-        <input type="number" id="price" name="qty" step="0.01" required><br>
+        <input type="number" id="qty" name="qty" step="0.01" required><br>
+<!-- 
+        <label for="Logo_image">Logo image :</label>
+        <input type="file" id="Logo_image" name="Logo_image" accept=".jpg, .jpeg,.png" required><br> -->
 
-        <!-- Image Paths -->
-        <label for="image_paths">Image Paths (comma-separated):</label>
-        <input type="text" id="image_paths" name="image_paths" required><br>
 
-        <!-- Submit Button -->
-        <input type="submit" value="Add Product">
+        <label for="more_image">more image :</label>
+        <input type="file" id="more_image" name="more_image[]" accept=".jpg, .jpeg,.png" required multiple><br>
+
+
+
+        
+            <input type="submit" name="submit" value="Add Product">
     </form>
+    <?php
+
+    if (isset($_POST['submit'])) {
+      
+        $name = $_POST['name'];
+        $discription = $_POST['description'];
+        $catid = $_POST['category'];
+        $subcatid = $_POST['subcategory'];
+        $price = $_POST['price'];
+        $qty = $_POST['qty'];
+
+        
+
+        $sql1 = "INSERT INTO products (name, discription, catid, subcatid, price, qty) VALUES ('$name', '$discription', '$catid', '$subcatid', '$price', '$qty')";
+
+        if (mysqli_query($connect, $sql1)) {
+
+            $totalfile1 = count($_FILES['more_image']['name']);
+             $fileArray = array();
+
+            for ($i = 0; $i < $totalfile1; $i++) {
+                 $imagename = $_FILES['more_image']['name'][$i];
+                 $tmpName = $_FILES['more_image']['tmp_name'][$i];
+
+                 $imageExtention = explode('.', $imagename);
+                 $imageExtention = strtolower(end($imageExtention));
+
+                 $newimagename = uniqid() . '.' . $imageExtention;
+                 move_uploaded_file($tmpName, 'product-images/' . $newimagename);
+                 $fileArray[] = $newimagename;
+
+
+             }
+             $fileArrayStr = implode(",", $fileArray);
+             $ptry =2;
+             $query = "INSERT INTO products_image VALUES ('$name','$fileArrayStr','$ptry')";
+             if (mysqli_query($connect, $query)){
+                header("Location: Signup.php");
+                exit();
+
+             }
+            
+
+        } else {
+            echo "Error: " . mysqli_error($connect);
+        }
+    }
+    mysqli_close($connect);
+
+    ?>
 </body>
 
 </html>
