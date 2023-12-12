@@ -27,7 +27,7 @@
     <h2>Add Product with Images</h2>
 
     <form enctype="multipart/form-data" action="addproduct.php" method="post">
-        
+
         <label for="product_name">Product Name:</label>
         <input type="text" id="product_name" name="name" required><br>
 
@@ -61,7 +61,7 @@
 
         <label for="subcategory">Subcategory:</label>
         <select name="subcategory" id="subcategory" required>
-          
+
         </select>
 
         <label for="price">Price:</label>
@@ -69,7 +69,7 @@
 
         <label for="price">Qty:</label>
         <input type="number" id="qty" name="qty" step="0.01" required><br>
-<!-- 
+        <!-- 
         <label for="Logo_image">Logo image :</label>
         <input type="file" id="Logo_image" name="Logo_image" accept=".jpg, .jpeg,.png" required><br> -->
 
@@ -79,13 +79,13 @@
 
 
 
-        
-            <input type="submit" name="submit" value="Add Product">
+
+        <input type="submit" name="submit" value="Add Product">
     </form>
     <?php
 
     if (isset($_POST['submit'])) {
-      
+
         $name = $_POST['name'];
         $discription = $_POST['description'];
         $catid = $_POST['category'];
@@ -93,43 +93,50 @@
         $price = $_POST['price'];
         $qty = $_POST['qty'];
 
-        
+
 
         $sql1 = "INSERT INTO products (name, discription, catid, subcatid, price, qty) VALUES ('$name', '$discription', '$catid', '$subcatid', '$price', '$qty')";
 
         if (mysqli_query($connect, $sql1)) {
-
             $totalfile1 = count($_FILES['more_image']['name']);
-             $fileArray = array();
+            $fileArray = array();
 
             for ($i = 0; $i < $totalfile1; $i++) {
-                 $imagename = $_FILES['more_image']['name'][$i];
-                 $tmpName = $_FILES['more_image']['tmp_name'][$i];
+                $imagename = $_FILES['more_image']['name'][$i];
+                $tmpName = $_FILES['more_image']['tmp_name'][$i];
 
-                 $imageExtention = explode('.', $imagename);
-                 $imageExtention = strtolower(end($imageExtention));
+                $imageExtension = explode('.', $imagename);
+                $imageExtension = strtolower(end($imageExtension));
 
-                 $newimagename = uniqid() . '.' . $imageExtention;
-                 move_uploaded_file($tmpName, 'product-images/' . $newimagename);
-                 $fileArray[] = $newimagename;
+                $newimagename = uniqid() . '.' . $imageExtension;
+                move_uploaded_file($tmpName, 'product_images/' . $newimagename);
+                $fileArray[] = $newimagename;
+            }
 
+            $fileArrayStr = implode(",", $fileArray);
+            $ptry = 2;
+            $query = "INSERT INTO products_image (name, image, prt) VALUES (?, ?, ?)";
+            $stmt = mysqli_prepare($connect, $query);
 
-             }
-             $fileArrayStr = implode(",", $fileArray);
-             $ptry =2;
-             $query = "INSERT INTO products_image VALUES ('$name','$fileArrayStr','$ptry')";
-             if (mysqli_query($connect, $query)){
-                header("Location: Signup.php");
-                exit();
-
-             }
-            
-
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, 'sss', $name, $fileArrayStr, $ptry);
+                if (mysqli_stmt_execute($stmt)) {
+                    header("Location: Signup.php");
+                    exit();
+                } else {
+                    echo "Error executing prepared statement: " . mysqli_stmt_error($stmt);
+                }
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "Error preparing statement: " . mysqli_error($connect);
+            }
         } else {
             echo "Error: " . mysqli_error($connect);
         }
     }
-    mysqli_close($connect);
+
+
+
 
     ?>
 </body>
