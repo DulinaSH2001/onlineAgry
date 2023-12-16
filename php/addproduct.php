@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        function updateSubcategories() {
-            var categoryId = $("#category").val();
+    function updateSubcategories() {
+        var categoryId = $("#category").val();
 
-            $.ajax({
-                url: "getsubcategories.php", //
-                type: "POST",
-                data: { categoryId: categoryId },
-                success: function (data) {
+        $.ajax({
+            url: "getsubcategories.php", //
+            type: "POST",
+            data: {
+                categoryId: categoryId
+            },
+            success: function(data) {
 
-                    $("#subcategory").html(data);
-                }
-            });
-        }
+                $("#subcategory").html(data);
+            }
+        });
+    }
     </script>
     <title>Add Product with Images</title>
 </head>
@@ -53,9 +55,9 @@
         <select name="category" id="category" onchange="updateSubcategories()">
             //ajex using to get sub catogery
             <?php foreach ($categories as $category): ?>
-                <option value="<?php echo $category['catid']; ?>">
-                    <?php echo $category['categoryname']; ?>
-                </option>
+            <option value="<?php echo $category['catid']; ?>">
+                <?php echo $category['categoryname']; ?>
+            </option>
             <?php endforeach; ?>
         </select>
 
@@ -69,9 +71,9 @@
 
         <label for="price">Qty:</label>
         <input type="number" id="qty" name="qty" step="0.01" required><br>
-        <!-- 
+
         <label for="Logo_image">Logo image :</label>
-        <input type="file" id="Logo_image" name="Logo_image" accept=".jpg, .jpeg,.png" required><br> -->
+        <input type="file" id="Logo_image" name="Logo_image" accept=".jpg, .jpeg,.png" required><br>
 
 
         <label for="more_image">more image :</label>
@@ -89,7 +91,7 @@
 
 
         $name = $_POST['name'];
-        $discription = $_POST['description'];
+        $description = $_POST['description'];
         $catid = $_POST['category'];
         $subcatid = $_POST['subcategory'];
         $price = $_POST['price'];
@@ -97,13 +99,37 @@
 
 
 
-        $sql1 = "INSERT INTO products (name, discription, catid, subcatid, price, qty) VALUES ('$name', '$discription', '$catid', '$subcatid', '$price', '$qty')";
+        $sql1 = "INSERT INTO products (name, description, catid, subcatid, price, qty) VALUES ('$name', '$description', '$catid', '$subcatid', '$price', '$qty')";
 
-        
+
 
         if (mysqli_query($connect, $sql1)) {
             $pid = mysqli_insert_id($connect);
-            
+            $logoImage = $_FILES['Logo_image']['name'];
+            $tmpLogoName = $_FILES['Logo_image']['tmp_name'];
+
+            $logoImageExtension = pathinfo($logoImage, PATHINFO_EXTENSION);
+            $logoImageExtension = strtolower($logoImageExtension);
+
+            $newLogoName = uniqid() . '.' . $logoImageExtension;
+            move_uploaded_file($tmpLogoName, 'product_images/' . $newLogoName);
+
+            $ptry = 1;
+            $queryLogo = "INSERT INTO products_image (pid, image, prt) VALUES (?, ?, ?)";
+            $stmtLogo = mysqli_prepare($connect, $queryLogo);
+
+            if ($stmtLogo) {
+                mysqli_stmt_bind_param($stmtLogo, 'sss', $pid, $newLogoName, $ptry);
+                if (mysqli_stmt_execute($stmtLogo)) {
+
+                } else {
+                    echo "Error executing prepared statement for logo image: " . mysqli_stmt_error($stmtLogo);
+                }
+                mysqli_stmt_close($stmtLogo);
+            } else {
+                echo "Error preparing statement for logo image: " . mysqli_error($connect);
+            }
+
             $totalfile1 = count($_FILES['more_image']['name']);
             $fileArray = array();
 
@@ -127,7 +153,7 @@
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, 'sss', $pid, $fileArrayStr, $ptry);
                 if (mysqli_stmt_execute($stmt)) {
-                    header("Location: Signup.php");
+                    header("Location: product_List.php");
                     exit();
                 } else {
                     echo "Error executing prepared statement: " . mysqli_stmt_error($stmt);
@@ -140,9 +166,6 @@
             echo "Error: " . mysqli_error($connect);
         }
     }
-
-
-
 
     ?>
 </body>
