@@ -86,6 +86,8 @@
 
     if (isset($_POST['submit'])) {
 
+
+
         $name = $_POST['name'];
         $discription = $_POST['description'];
         $catid = $_POST['category'];
@@ -97,7 +99,11 @@
 
         $sql1 = "INSERT INTO products (name, discription, catid, subcatid, price, qty) VALUES ('$name', '$discription', '$catid', '$subcatid', '$price', '$qty')";
 
+        
+
         if (mysqli_query($connect, $sql1)) {
+            $pid = mysqli_insert_id($connect);
+            
             $totalfile1 = count($_FILES['more_image']['name']);
             $fileArray = array();
 
@@ -115,11 +121,11 @@
 
             $fileArrayStr = implode(",", $fileArray);
             $ptry = 2;
-            $query = "INSERT INTO products_image (name, image, prt) VALUES (?, ?, ?)";
+            $query = "INSERT INTO products_image (pid, image, prt) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($connect, $query);
 
             if ($stmt) {
-                mysqli_stmt_bind_param($stmt, 'sss', $name, $fileArrayStr, $ptry);
+                mysqli_stmt_bind_param($stmt, 'sss', $pid, $fileArrayStr, $ptry);
                 if (mysqli_stmt_execute($stmt)) {
                     header("Location: Signup.php");
                     exit();
