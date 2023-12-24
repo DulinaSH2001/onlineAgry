@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <style>
     .product__pagination a.active {
@@ -37,32 +36,21 @@
 <body>
 
     <?php
-    include 'header.php';
-  
-    $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+    include 'connect.php';
     ?>
+
 
     <?php
-    function generateBreadcrumb()
-    {
-        $breadcrumb = '<a href="/">Home</a>';
+                        if (isset($_GET['category'])) {
 
-        // Get the current page URL
-        $url = $_SERVER['REQUEST_URI'];
-        $urlParts = explode('/', $url);
+                            $category = htmlspecialchars($_GET['category']);
 
-        $path = '/';
-        foreach ($urlParts as $part) {
-            if ($part !== '') {
-                $path .= $part . '/';
-                $breadcrumb .= ' / <a href="' . $path . '">' . ucfirst($part) . '</a>';
-            }
-        }
 
-        return $breadcrumb;
-    }
-    ?>
+                            echo "Displaying products for category: " . $category;
+                        } else {
 
+                            echo "No category selected.";
+                        } ?>
 
     <!-- Product Section Begin -->
     <section class="product spad">
