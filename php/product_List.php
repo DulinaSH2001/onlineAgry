@@ -10,7 +10,6 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>product list</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -24,7 +23,6 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <style>
     .product__pagination a.active {
@@ -37,31 +35,15 @@
 <body>
 
     <?php
-    include 'header.php';
+   include 'header.php';
+    
   
     $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+   
+   
     ?>
 
-    <?php
-    function generateBreadcrumb()
-    {
-        $breadcrumb = '<a href="/">Home</a>';
 
-        // Get the current page URL
-        $url = $_SERVER['REQUEST_URI'];
-        $urlParts = explode('/', $url);
-
-        $path = '/';
-        foreach ($urlParts as $part) {
-            if ($part !== '') {
-                $path .= $part . '/';
-                $breadcrumb .= ' / <a href="' . $path . '">' . ucfirst($part) . '</a>';
-            }
-        }
-
-        return $breadcrumb;
-    }
-    ?>
 
 
     <!-- Product Section Begin -->
@@ -76,7 +58,7 @@
                             <ul>
                                 <?php foreach ($categories as $category): ?>
                                 <li><a
-                                        href="category_product.php?category=<?php echo urlencode($category['categoryname']); ?>"><?php echo $category['categoryname']; ?></a>
+                                        href="category_product.php?category=<?php echo urlencode($category['catid']); ?>"><?php echo $category['categoryname']; ?></a>
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -98,45 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar__item sidebar__item__color--option">
-                            <h4>Colors</h4>
-                            <div class="sidebar__item__color sidebar__item__color--white">
-                                <label for="white">
-                                    White
-                                    <input type="radio" id="white">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--gray">
-                                <label for="gray">
-                                    Gray
-                                    <input type="radio" id="gray">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--red">
-                                <label for="red">
-                                    Red
-                                    <input type="radio" id="red">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--black">
-                                <label for="black">
-                                    Black
-                                    <input type="radio" id="black">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--blue">
-                                <label for="blue">
-                                    Blue
-                                    <input type="radio" id="blue">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--green">
-                                <label for="green">
-                                    Green
-                                    <input type="radio" id="green">
-                                </label>
-                            </div>
-                        </div>
+
                         <div class="sidebar__item">
                             <h4>Popular Size</h4>
                             <div class="sidebar__item__size">
@@ -264,6 +208,7 @@
                         ?>
 
                     </div>
+                    <!-- //pagination system  start  -->
                     <div class="product__pagination">
 
 
@@ -277,6 +222,7 @@
                         ?>
 
                     </div>
+                    <!-- //pagination system  start  -->
                 </div>
             </div>
         </div>

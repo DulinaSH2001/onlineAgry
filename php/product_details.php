@@ -45,7 +45,7 @@
                         $resultlogo = mysqli_query($connect, $sqllogo);
 
                         while ($logo = $resultlogo->fetch_assoc()) { ?>
-                            <?php
+                        <?php
                             echo '<img class="product__details__pic__item--large" src="product_images/' . $logo['image'] . '">';
                         }
                         ?>
@@ -77,15 +77,15 @@
                         while ($product = $resultProducts->fetch_assoc()) {
                             echo '<h3>' . $product['name'] . '</h3>';
                             ?>
-                            <div class="product__details__rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <span>(18 reviews)</span>
-                            </div>
-                            <?php echo '<div class="product__details__price">' . $product['price'] . '</div>';
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span></span>
+                        </div>
+                        <?php echo '<div class="product__details__price">' . $product['price'] . '</div>';
                         } ?>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet

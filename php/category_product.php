@@ -13,6 +13,8 @@
     <title>product list</title>
 
     <!-- Google Font -->
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
@@ -36,21 +38,14 @@
 <body>
 
     <?php
-    include 'connect.php';
+    include 'header.php';
+  
+    $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+    $selectedCategory = isset($_GET['category']) ? $_GET['category'] : null;
     ?>
 
 
-    <?php
-                        if (isset($_GET['category'])) {
 
-                            $category = htmlspecialchars($_GET['category']);
-
-
-                            echo "Displaying products for category: " . $category;
-                        } else {
-
-                            echo "No category selected.";
-                        } ?>
 
     <!-- Product Section Begin -->
     <section class="product spad">
@@ -64,7 +59,7 @@
                             <ul>
                                 <?php foreach ($categories as $category): ?>
                                 <li><a
-                                        href="category_product.php?category=<?php echo urlencode($category['categoryname']); ?>"><?php echo $category['categoryname']; ?></a>
+                                        href="category_product.php?category=<?php echo urlencode($category['catid']); ?>"><?php echo $category['categoryname']; ?></a>
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -206,8 +201,16 @@
                         $limit = 6; // Number of products per page
                         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                         $offset = ($currentPage - 1) * $limit;
+                        if ($selectedCategory) {
+                            // Use the selected category to filter products
+                            $sqlProducts = "SELECT * FROM products WHERE catid = '$selectedCategory' ORDER BY price $sortOrder LIMIT $offset, $limit";
+                        } else {
+                            // No category selected, retrieve all products
+                            $sqlProducts = "SELECT * FROM products ORDER BY price $sortOrder LIMIT $offset, $limit";
+                        }
+                        
 
-                        $sqlProducts = "SELECT * FROM products ORDER BY price $sortOrder LIMIT $offset, $limit ";
+                       
                         $resultProducts = mysqli_query($connect, $sqlProducts);
 
                         while ($product = $resultProducts->fetch_assoc()) {

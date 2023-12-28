@@ -4,9 +4,15 @@
 </div>
 
 <?php
+// Enable error reporting for debugging purposes
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Include your header file and other necessary files
 
 include 'connect.php';
 
+// The rest of your main file's code goes here
 ?>
 
 <!-- Humberger Begin -->
@@ -170,7 +176,7 @@ include 'connect.php';
 
                     <ul>
                         <?php foreach ($categories as $category): ?>
-                        <li><a href="category_list.php?category=<?php echo urlencode($category['categoryname']); ?>">
+                        <li><a href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
                                 <?php echo $category['categoryname']; ?>
                             </a>
                         </li>
@@ -201,8 +207,8 @@ include 'connect.php';
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5><a href="https://wa.me/o771977766" target="_blank"> WhatsApp</a></h5>
+                            <span><a href="tel:+94352284049">Call us at 0352284049</a></span>
                         </div>
                     </div>
                 </div>
@@ -211,23 +217,3 @@ include 'connect.php';
     </div>
 </section>
 <!-- Hero Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Vegetable’s Package</h2>
-                    <div class="breadcrumb__option">
-                        <!-- <?php  echo generateBreadcrumb(); ?> -->
-                        <!-- <a href="./index.html">Home</a>
-                        <a href="./index.html">Vegetables</a>
-                        <span>Vegetable’s Package</span> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
