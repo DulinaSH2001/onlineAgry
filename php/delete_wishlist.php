@@ -23,6 +23,5 @@ if (isset($_GET['pid'])) {
         echo "Item does not exist in the wishlist."; //add script alert 
     }
 }
-
 $connect->close();
 ?>
