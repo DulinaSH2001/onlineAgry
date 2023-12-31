@@ -2,58 +2,58 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
 
-    <!-- calcilater -->
+  <!-- calcilater -->
 
-    <form action="test.php" method="post">
-
-
-        <label for="fname">First name:</label>
-        <input type="text" name="fname">
-        <br><br>
-
-        <label for="lname">Last name:</label>
-        <input type="text" name="lname">
-        <br><br>
-
-        <label for="age">age:</label>
-        <input type="text" name="age">
-        <br><br>
-
-        <label for="dob">date of birth:</label>
-        <input type="date" name="dob">
-        <br><br>
+  <form action="test.php" method="post">
 
 
-        <select name="gender">
-            <option value="0" selected>--select gender --</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-        </select>
-        <br><br>
+    <label for="fname">First name:</label>
+    <input type="text" name="fname">
+    <br><br>
+
+    <label for="lname">Last name:</label>
+    <input type="text" name="lname">
+    <br><br>
+
+    <label for="age">age:</label>
+    <input type="text" name="age">
+    <br><br>
+
+    <label for="dob">date of birth:</label>
+    <input type="date" name="dob">
+    <br><br>
 
 
-        <label for="address">address:</label>
-        <input type="text" name="address">
-        <br><br>
-
-        <label for="email">email:</label>
-        <input type="text" name="email">
-        <br><br>
-
-        <input type="submit" name="submit" value="add user">
+    <select name="gender">
+      <option value="0" selected>--select gender --</option>
+      <option value="male">male</option>
+      <option value="female">female</option>
+    </select>
+    <br><br>
 
 
+    <label for="address">address:</label>
+    <input type="text" name="address">
+    <br><br>
+
+    <label for="email">email:</label>
+    <input type="text" name="email">
+    <br><br>
+
+    <input type="submit" name="submit" value="add user">
 
 
-    </form>
-    <?php
+
+
+  </form>
+  <?php
   include 'testconnect.php';
 
 

@@ -39,7 +39,7 @@ include 'connect.php';
             </ul>
         </div>
         <div class="header__top__right__auth">
-            <a href="#"><i class="fa fa-user"></i> Login</a>
+            <a href="login.php"><i class="fa fa-user"></i> Login</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -105,7 +105,7 @@ include 'connect.php';
                             </ul>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                            <a href="login.php"><i class="fa fa-user"></i> Login</a>
                         </div>
                     </div>
                 </div>
@@ -176,10 +176,10 @@ include 'connect.php';
 
                     <ul>
                         <?php foreach ($categories as $category): ?>
-                        <li><a href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
-                                <?php echo $category['categoryname']; ?>
-                            </a>
-                        </li>
+                            <li><a href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
+                                    <?php echo $category['categoryname']; ?>
+                                </a>
+                            </li>
                         <?php endforeach; ?>
 
                     </ul>
@@ -189,7 +189,7 @@ include 'connect.php';
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="#">
-                            <div class="hero__search__categories">
+                            <div class="hero__search__categories rounded">
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>

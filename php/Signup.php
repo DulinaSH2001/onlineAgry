@@ -18,34 +18,43 @@ include 'connect.php';
 </head>
 
 <body>
-    <form action="Signup.php" method ='post'>
-        <label for="firstname">First name:</label>
-        <input type="text" name="Fname"></br>
+    <form action="Signup.php" method='post'>
+        <div class="form-group">
+            <label for="firstname">First name:</label>
+            <input type="text" class="form-control" name="Fname"></br>
+        </div>
+        <div class="form-group"> <label for="Lastname">Last name:</label>
+            <input type="text" class="form-control" name="Lname"></br>
+        </div>
+        <div class="form-group"> <label for="dob">Date of birth:</label>
+            <input type="date" class="form-control" ?name="dob"></br>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" name="email"></br>
+        </div>
+        <div class="form-group">
+            <label for="Mobile">Mobile number :</label>
+            <input type="tel" class="form-control" name="tel"></br>
+        </div>
+        <div class="form-group">
+            <label for="Username">Username:</label>
+            <input type="text" class="form-control" name="username"></br>
+        </div>
 
-        <label for="Lastname">Last name:</label>
-        <input type="text" name="Lname"></br>
 
-        <label for="dob">Date of birth:</label>
-        <input type="date" name="dob"></br>
+        <div class="form-group"> <label for="Password">Password :</label>
+            <input type="text" class="form-control" name="password"></br>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="text" name="email"></br>
 
-        <label for="Mobile">Mobile number :</label>
-        <input type="tel" name="tel"></br>
-
-        <label for="Username">Username:</label>
-        <input type="text" name="username"></br>
-
-        <label for="Password">Password :</label>
-        <input type="text" name="password"></br>
         <button type="submit" class="btn btn-primary">Register</button>
         <button type="reset">Reset</button>
     </form>
     <?php
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
+
 
         $user_id = 'us' . substr(uniqid(), 0, 6);
         $firstname = $_POST['Fname'];
@@ -56,9 +65,10 @@ include 'connect.php';
         $username = $_POST['username'];
         $password = $_POST['password'];
         $tel = $_POST['tel'];
+        $status = 1;
 
         // Update the user's profile in the database
-        $sql = "INSERT INTO users (userid ,fname, lname,dob, phone, email, password, username) VALUES ('$user_id','$firstname', '$lastname','$dob', '$tel', '$email', '$password', '$username')";
+        $sql = "INSERT INTO users (userid ,fname, lname,dob, phone, email, password, username,status) VALUES ('$user_id','$firstname', '$lastname','$dob', '$tel', '$email', '$password', '$username','$status')";
 
         if (mysqli_query($connect, $sql)) {
             header("Location: login.php");

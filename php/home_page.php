@@ -30,7 +30,7 @@
     ini_set('display_errors', 1);
 
     // Include your header file and other necessary files
-    include 'header.php';
+    
     include 'connect.php';
 
     // The rest of your main file's code goes here
@@ -39,9 +39,9 @@
     <section class="hero">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
+                <div class="col-lg-3 rounded">
+                    <div class="hero__categories rounded">
+                        <div class="hero__categories__all rounded">
                             <i class="fa fa-bars"></i>
                             <span>All departments</span>
                         </div>
@@ -62,14 +62,14 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
-                        <div class="hero__search__form">
+                        <div class="hero__search__form rounded-left">
                             <form action="#">
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <button type="submit" class="site-btn rounded-right">SEARCH</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -87,7 +87,7 @@
                             <span>FRUIT FRESH</span>
                             <h2>Vegetable <br />100% Organic</h2>
                             <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <a href="#" class="primary-btn rounded">SHOP NOW</a>
                         </div>
                     </div>
                 </div>

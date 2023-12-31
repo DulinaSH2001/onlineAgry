@@ -5,8 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tempusername = $_POST['email'];
     $temppassword = $_POST['password'];
 
-    if ($tempusername == 'adminsaradhalanka@gmail.com' && $temppassword == 'admin@2023saradhalanka') {
-        header('Location:head admin\adminDashboard.php');
+    if ($tempusername == 'dulinaAdmin@gamil.com' && $temppassword == 'admindulina@2001') {
+        header('Location: Admin_panel/dashboard.php');
 
 
     } else {
@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = mysqli_query($connect, $sql);
 
         if ($result && $result->num_rows == 1) {
+            echo '<h2>' . $tempusername . '</h2>';
             session_start();
             $user = $result->fetch_assoc();
             $_SESSION['u'] = $user;
@@ -23,13 +24,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie("password", $temppassword, time() + (60 * 60 * 24 * 365));
 
 
-            header("Location: userprofile.php");
+            header("Location: product_List.php");
 
 
 
-        } else {
-            echo "<script> alert('invalide user name or password')</script>";
+        } else if ($result && $result->num_rows == 0) {
+            $adminsql = "SELECT * FROM admin WHERE (username = '$tempusername' OR email = '$tempusername') AND (password = '$temppassword');";
+            $adminresult = mysqli_query($connect, $sql);
+            if ($adminresult && $adminresult->num_rows == 1) {
+                session_start();
+                $admin = $adminresult->fetch_assoc();
+                $_SESSION['a'] = $admin;
+
+                setcookie("username", $tempusername, time() + (60 * 60 * 24 * 365));
+                setcookie("password", $temppassword, time() + (60 * 60 * 24 * 365));
+
+
+                header("Location: Admin_panel/dashboard.php");
+
+            } else {
+                // echo "<script> alert('invalide user name or password')</script>";
+            }
+
         }
+
+
+
+
     }
 }
 
@@ -84,6 +105,8 @@ if (isset($_GET['signup'])) {
         </div>
 
     </div>
+
+
 
 </body>
 

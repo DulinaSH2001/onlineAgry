@@ -225,7 +225,7 @@
                                 echo '<div class="product__item__pic set-bg" data-setbg="product_images/' . $image['image'] . '">';
                             }
                             echo '<ul class="product__item__pic__hover">';
-                            echo ' <li><a href=""><i class="fa fa-heart"></i></a></li>';
+                            echo ' <li><a href="add_wishlist.php?pid='.$product['pid'].' "><i class="fa fa-heart"></i></a></li>';
                             echo ' <li><a href="product_details.php?&product_id=' . $product['pid'] . '"><i class="fa fa-retweet"></i></a></li>';
                             echo ' <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
                             echo '   </ul>';

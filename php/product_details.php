@@ -37,7 +37,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <?php
-                        // session_start();
+                        //  session_start();
                         
                         // Get the product ID from the URL
                         $productId = $_GET['product_id'];
@@ -45,7 +45,7 @@
                         $resultlogo = mysqli_query($connect, $sqllogo);
 
                         while ($logo = $resultlogo->fetch_assoc()) { ?>
-                        <?php
+                            <?php
                             echo '<img class="product__details__pic__item--large" src="product_images/' . $logo['image'] . '">';
                         }
                         ?>
@@ -77,15 +77,15 @@
                         while ($product = $resultProducts->fetch_assoc()) {
                             echo '<h3>' . $product['name'] . '</h3>';
                             ?>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span></span>
-                        </div>
-                        <?php echo '<div class="product__details__price">' . $product['price'] . '</div>';
+                            <div class="product__details__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span></span>
+                            </div>
+                            <?php echo '<div class="product__details__price">' . $product['price'] . '</div>';
                         } ?>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
@@ -93,12 +93,15 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1" name="qty" id="quantityInput">
+
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <a href="#" class="primary-btn" id="addToCartBtn">ADD
+                            TO CARD</a>
+                        <a href="add_wishlist.php?pid=<?php echo $productId; ?>" class="heart-icon"><span
+                                class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
@@ -222,6 +225,15 @@
     ?>
 
     <?php include 'footer.php'; ?>
+    <script>
+        document.getElementById('addToCartBtn').addEventListener('click', function () {
+            var qty = document.getElementById('quantityInput').value;
+            var addToCartUrl = 'add_cart.php?pid=<?php echo $productId; ?>&qty=' + qty;
+
+
+            window.location.href = addToCartUrl;
+        });
+    </script>
 </body>
 
 </html>
