@@ -27,7 +27,7 @@
 <body class="bg-">
     <?php include 'header.php'; ?>
 
-    <!-- ... (other PHP code remains unchanged) ... -->
+
 
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
@@ -37,9 +37,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <?php
-                        //  session_start();
-                        
-                        // Get the product ID from the URL
+
                         $productId = $_GET['product_id'];
                         $sqllogo = "SELECT image FROM products_image WHERE pid = $productId AND prt = 1";
                         $resultlogo = mysqli_query($connect, $sqllogo);
@@ -58,7 +56,7 @@
                             while ($image = $resultImages->fetch_assoc()) {
                                 $imageArray = explode(',', $image['image']);
 
-                                // Display each image in the array
+
                                 foreach ($imageArray as $imageName) {
                                     echo ' <img data-imgbigurl="product_images/' . $imageName . '"  src="product_images/' . $imageName . '" alt="Product Image">';
                                 }
@@ -93,13 +91,16 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1" name="qty" id="quantityInput">
+
+                                    <input type="text" min="1" value="1" name="qty" id="quantityInput">
 
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn" id="addToCartBtn">ADD
-                            TO CARD</a>
+                        <a href="#" class="primary-btn" id="addToCartBtn">
+                            <button type="submit" class="site-btn" value="addcart">add to cart
+                            </button>
+                        </a>
                         <a href="add_wishlist.php?pid=<?php echo $productId; ?>" class="heart-icon"><span
                                 class="icon_heart_alt"></span></a>
                         <ul>
@@ -225,15 +226,18 @@
     ?>
 
     <?php include 'footer.php'; ?>
+
+
     <script>
         document.getElementById('addToCartBtn').addEventListener('click', function () {
             var qty = document.getElementById('quantityInput').value;
-            var addToCartUrl = 'add_cart.php?pid=<?php echo $productId; ?>&qty=' + qty;
+            var addToCartUrl = 'add_cart.php?addcart_pid=<?php echo $productId; ?>&qty=' + qty;
 
-
-            window.location.href = addToCartUrl;
+            // Use window.location.replace() to perform a redirect
+            window.location.replace(addToCartUrl);
         });
     </script>
+
 </body>
 
 </html>

@@ -455,3 +455,89 @@
 </body>
 
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+session_start();
+
+include 'connect.php';
+
+function checkout()
+{
+    global $connect;
+
+    // Check or create a cart for the user
+    $cartId = checkOrCreateCart();
+
+    // Calculate total price of items in the cart
+    $cartQuery = "SELECT SUM(q_price) AS total_price FROM cart_product WHERE cartid = $cartId";
+    $cartResult = $connect->query($cartQuery);
+    $cartData = $cartResult->fetch_assoc();
+    $totalPrice = $cartData['total_price'];
+
+    // Insert order into the order table
+    $insertOrderQuery = "INSERT INTO orders (cartid, tprice) VALUES ($cartId, $totalPrice)";
+    $connect->query($insertOrderQuery);
+    $orderId = $connect->insert_id;
+
+    // Clear the cart
+    clearCart($cartId);
+
+    // Redirect to the payment page with the order ID
+    header("Location: payhere.php?order_id=$orderId");
+    exit;
+}
+
+function clearCart($cartId)
+{
+    global $connect;
+
+    // Update the cart_status to indicate it's closed (completed)
+    $updateCartQuery = "UPDATE cart SET cart_status = 1 WHERE cartid = $cartId";
+    $connect->query($updateCartQuery);
+
+    // Additional cleanup steps, if needed
+}
+
+// Check if a checkout request is made
+if (isset($_GET['checkout'])) {
+    checkout();
+}
+
+// ...
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head content -->
+</head>
+
+<body>
+
+    <h1>Welcome to our online store</h1>
+
+    <?php
+    // Display the cart
+    displayCart($connect);
+    ?>
+
+    <!-- Button to proceed to checkout -->
+    <form action="?checkout" method="post">
+        <input type="submit" value="Proceed to Checkout">
+    </form>
+
+</body>
+
+</html>
+
+    
+</body>
+</html>

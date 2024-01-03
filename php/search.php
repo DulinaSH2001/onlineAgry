@@ -10,9 +10,6 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>product list</title>
-
-    <!-- Google Font -->
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -38,10 +35,13 @@
 <body>
 
     <?php
-    include 'header.php';
+   include 'header.php';
+    
   
     $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
-    $selectedCategory = isset($_GET['category']) ? $_GET['category'] : null;
+    $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+   
+   
     ?>
 
 
@@ -65,13 +65,49 @@
                             </ul>
                         </div>
                         <div class="sidebar__item">
-
+                            <h4>Price</h4>
+                            <div class="price-range-wrap">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                    data-min="10" data-max="540">
+                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                </div>
+                                <div class="range-slider">
+                                    <div class="price-input">
+                                        <input type="text" id="minamount">
+                                        <input type="text" id="maxamount">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sidebar__item sidebar__item__color--option">
 
-                        </div>
                         <div class="sidebar__item">
-
+                            <h4>Popular Size</h4>
+                            <div class="sidebar__item__size">
+                                <label for="large">
+                                    Large
+                                    <input type="radio" id="large">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__size">
+                                <label for="medium">
+                                    Medium
+                                    <input type="radio" id="medium">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__size">
+                                <label for="small">
+                                    Small
+                                    <input type="radio" id="small">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__size">
+                                <label for="tiny">
+                                    Tiny
+                                    <input type="radio" id="tiny">
+                                </label>
+                            </div>
                         </div>
 
                     </div>
@@ -97,28 +133,21 @@
                                 <div class="filter__found">
                                     <?php
                                     
-                        // session_start();
+                                    
+                         $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+   
+
+                        
                         $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
 
 
                         $limit = 6; // Number of products per page
                         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                         $offset = ($currentPage - 1) * $limit;
-                        if ($selectedCategory) {
-                            // Use the selected category to filter products
-                            $sqlProducts = "SELECT * FROM products WHERE catid = '$selectedCategory' ORDER BY price $sortOrder LIMIT $offset, $limit";
-                        } else {
-                            // No category selected, retrieve all products
-                            $sqlProducts = "SELECT * FROM products ORDER BY price $sortOrder LIMIT $offset, $limit";
-                        }
-                        
-
-                       
-                        $resultProducts = mysqli_query($connect, $sqlProducts);
-
-                                    
-                             
-                                    $rowCount = mysqli_num_rows($resultProducts);
+                        if ($searchTerm) {
+                            $sqlProducts = "SELECT * FROM products WHERE name LIKE '%$searchTerm%' ORDER BY price $sortOrder LIMIT $offset, $limit";
+                            $resultProducts = mysqli_query($connect, $sqlProducts);
+                                    $rowCount = mysqli_num_rows($resultProducts);;
                                     ?>
                                     <h6><span>
                                             <?php echo $rowCount ?>
@@ -137,8 +166,8 @@
 
 
 
-                        <?php
 
+                        <?php
                         while ($product = $resultProducts->fetch_assoc()) {
                             $productId = $product['pid'];
                             $sqlImages = "SELECT image FROM products_image WHERE pid = $productId AND prt = 1";
@@ -151,7 +180,7 @@
                                 echo '<div class="product__item__pic set-bg" data-setbg="product_images/' . $image['image'] . '">';
                             }
                             echo '<ul class="product__item__pic__hover">';
-                            echo ' <li><a href="add_wishlist.php?pid='.$product['pid'].' "><i class="fa fa-heart"></i></a></li>';
+                            echo ' <li><a href=""><i class="fa fa-heart"></i></a></li>';
                             echo ' <li><a href="product_details.php?&product_id=' . $product['pid'] . '"><i class="fa fa-retweet"></i></a></li>';
                             echo ' <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
                             echo '   </ul>';
@@ -178,9 +207,13 @@
 
 
                         }
-                        ?>
+                    } else {
+                        echo '</br><h1>No Products Found!</h1>';
+                    
+                      }  ?>
 
                     </div>
+
                     <div class="product__pagination">
 
 
@@ -194,6 +227,7 @@
                         ?>
 
                     </div>
+
                 </div>
             </div>
         </div>

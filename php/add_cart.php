@@ -1,36 +1,60 @@
 <?php
+session_start();
+
 include 'connect.php';
 
-session_start();
-$id = $_SESSION['u']['userid'];
+$userId = $_SESSION['u']['userid'];
 
-if (isset($_GET['pid'])) {
-    $pid = $_GET['pid'];
-    $qty = $_GET['qty'];
+function checkOrCreateCart()
+{
+    global $connect;
 
+    $cartQuery = "SELECT * FROM cart WHERE userid = {$_SESSION['u']['userid']} AND cart_status = 0";
+    $cartResult = $connect->query($cartQuery);
 
-    // Get the details of the app from the apps table
-    $cartSql = "SELECT * FROM apps WHERE ID='$appId'";
-    $appResult = $connect->query($appSql);
-    if ($appResult->num_rows > 0) {
-        $appRow = $appResult->fetch_assoc();
-
-        $appName = $appRow['Name'];
-        $appLogo = base64_encode($appRow['Logo']);
-
-        // Insert the item into the wishlist
-        $insertSql = "INSERT INTO wishlist (UserID, appID, Appname, image) VALUES ('$id', '$appId', '$appName', '$appLogo')";
-        if ($connect->query($insertSql) === TRUE) {
-            echo "Item added to wishlist successfully.";
-            header("Location:Wishlist.php");
-        } else {
-            echo "Error adding item to wishlist: " . mysqli_error($connect);
-        }
+    if ($cartResult->num_rows > 0) {
+        $cart = $cartResult->fetch_assoc();
+        return $cart['cartid'];
     } else {
-        echo "App not found.";
+        $insertCartQuery = "INSERT INTO cart (userid, cart_status) VALUES ({$_SESSION['u']['userid']}, 0)";
+        $connect->query($insertCartQuery);
+        return $connect->insert_id;
     }
-
 }
 
-$connect->close();
+function addToCart($productId, $quantity)
+{
+    global $connect;
+
+    $cartId = checkOrCreateCart();
+
+    $productQuery = "SELECT * FROM products WHERE pid = $productId";
+    $productResult = $connect->query($productQuery);
+
+    if ($productResult === false) {
+        echo "Error: " . $connect->error;
+        return;
+    }
+
+    if ($productResult->num_rows > 0) {
+        $product = $productResult->fetch_assoc();
+        $totalPrice = $quantity * $product['price'];
+
+        $insertQuery = "INSERT INTO cart_product (cartid, productid, name, qty, p_price, q_price) VALUES ($cartId, $productId, '{$product['name']}', $quantity, {$product['price']}, $totalPrice)";
+        $connect->query($insertQuery);
+    } else {
+        echo "Product not found";
+    }
+
+    // Redirect to cart.php after adding the product to the cart
+    header("Location: cart.php");
+    exit;
+}
+if (isset($_GET['addcart_pid']) && isset($_GET['qty'])) {
+    $productId = $_GET['addcart_pid'];
+    $quantity = $_GET['qty'];
+
+
+    addToCart($productId, $quantity);
+}
 ?>
