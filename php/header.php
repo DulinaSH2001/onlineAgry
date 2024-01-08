@@ -1,23 +1,21 @@
-<html>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-<head>
-    <title>header </title>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<!-- Css Styles -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
+    <?php session_start();
 
+    ?>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -39,21 +37,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <style>
-        /* Remove hyperlink hover effect */
-        .link-secondary,
-        .link-secondary:hover {
-            color: #89ac4b;
-            /* Use the same color as the normal state */
-            text-decoration: none;
-            /* Remove underline or any other decoration */
-        }
+    /* Remove hyperlink hover effect */
+    .link-secondary,
+    .link-secondary:hover {
+        color: #89ac4b;
+        /* Use the same color as the normal state */
+        text-decoration: none;
+        /* Remove underline or any other decoration */
+    }
     </style>
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="#"><img src="img/newlogo3.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -72,8 +70,17 @@
                     <li><a href="#">English</a></li>
                 </ul>
             </div>
+
             <div class="header__top__right__auth">
-                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                <?php
+
+                if (isset($_SESSION['u']['userid'])) {
+                    echo '<a href="#"><b>Welcome, ' . $_SESSION['u']['username'] . '</b></a>';
+
+                } else {
+                    echo '<a href="login.php"><i class="fa fa-user"></i> Login</a>';
+                }
+                ?>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -139,7 +146,13 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                                <?php
+                                if (isset($_SESSION['u']['userid'])) {
+                                    echo '<a href="#">Welcome, ' . $_SESSION['u']['username'] . '</a>';
+                                } else {
+                                    echo '<a href="login.php"><i class="fa fa-user"></i> Login</a>';
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -150,7 +163,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="img/newlogo3.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -174,10 +187,94 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <?php
+                            if (isset($_SESSION['u']['userid'])) {
+                                function checkOrCreateCart()
+                                {
+                                    global $connect;
+
+                                    $cartQuery = "SELECT * FROM cart WHERE userid = {$_SESSION['u']['userid']} AND cart_status = 0";
+                                    $cartResult = $connect->query($cartQuery);
+
+                                    if ($cartResult->num_rows > 0) {
+                                        $cart = $cartResult->fetch_assoc();
+                                        return $cart['cartid'];
+                                    } else {
+                                        $insertCartQuery = "INSERT INTO cart (userid, cart_status) VALUES ({$_SESSION['u']['userid']}, 0)";
+                                        $connect->query($insertCartQuery);
+                                        return $connect->insert_id;
+                                    }
+                                }
+
+
+                                function calculateNetPrice($cartProducts)
+                                {
+                                    $netPrice = 0;
+                                    foreach ($cartProducts as $cartProduct) {
+                                        $netPrice += $cartProduct['q_price'];
+                                    }
+                                    return $netPrice;
+                                }
+                                function getCartProducts($cartId)
+                                {
+                                    global $connect;
+
+                                    $cartProductsQuery = "SELECT * FROM cart_product WHERE cartid = $cartId";
+                                    $cartProductsResult = $connect->query($cartProductsQuery);
+
+                                    $cartProducts = [];
+                                    while ($row = $cartProductsResult->fetch_assoc()) {
+                                        $cartProducts[] = $row;
+                                    }
+
+                                    return $cartProducts;
+                                }
+
+                                $userid = $_SESSION['u']['userid'];
+
+                                $cartId = checkOrCreateCart();
+                                $cartcountQuery = "SELECT COUNT(cartpdtid) AS cart_count FROM cart_product WHERE cartid = $cartId";
+                                $cartResult = $connect->query($cartcountQuery);
+
+                                if ($cartResult) {
+                                    $cartCount = $cartResult->fetch_assoc()['cart_count'];
+                                    echo '<li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span>' . $cartCount . '</span></a></li>';
+                                } else {
+                                    echo '<li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>';
+                                }
+
+                                $wishlistcountQuery = "SELECT COUNT(pid) AS wishlist_count FROM wishlist WHERE userid = $userid";
+                                $wishlistResult = $connect->query($wishlistcountQuery);
+
+                                if ($wishlistResult) {
+                                    $wishlistCount = $wishlistResult->fetch_assoc()['wishlist_count'];
+                                    echo '<li><a href="wishlist.php"><i class="fa fa-heart"></i> <span>' . $wishlistCount . '</span></a></li>';
+                                } else {
+                                    echo '<li><a href="wishlist.php"><i class="fa fa-heart"></i> <span>0</span></a></li>';
+                                }
+
+
+                            } else {
+                                echo ' <li><a href="login.php"><i class="fa fa-heart"></i> <span>0</span></a></li>';
+                                echo '<li><a href="login.php"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>';
+                            }
+                            ?>
+
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+
+                        <?php
+                        if (isset($_SESSION['u']['userid'])) {
+
+                            // Calculate and display total price
+                            $cartProducts = getCartProducts($cartId);
+                            $totalPrice = calculateNetPrice($cartProducts);
+                            echo '<div class="header__cart__price">item: <span>$' . number_format($totalPrice, 2) . '</span></div>';
+                        } else {
+                            echo '<div class="header__cart__price">item: <span>$0</span></div>';
+                        }
+
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -194,7 +291,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="hero__categories">
-                        <div class="hero__categories__all">
+                        <div class="shadow hero__categories__all">
                             <i class="fa fa-bars"></i>
                             <span>All catagory</span>
                         </div>
@@ -210,10 +307,10 @@
 
                         <ul>
                             <?php foreach ($categories as $category): ?>
-                                <li><a href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
-                                        <?php echo $category['categoryname']; ?>
-                                    </a>
-                                </li>
+                            <li><a href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
+                                    <?php echo $category['categoryname']; ?>
+                                </a>
+                            </li>
                             <?php endforeach; ?>
 
                         </ul>
@@ -225,7 +322,7 @@
                             <form action="search.php" method="get">
 
                                 <input type="text" name="search" placeholder="What do you need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <button type="submit" class=" site-btn">SEARCH</button>
                             </form>
                             <div class="hero__search__phone">
                                 <div class="hero__search__phone__icon">
@@ -236,12 +333,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
 
 
     </section>
 
 </body>
-
-</html>
-
 <!-- Hero Section End -->

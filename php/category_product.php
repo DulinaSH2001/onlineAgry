@@ -146,9 +146,9 @@
 
 
                             while ($image = $resultImages->fetch_assoc()) {
-                                echo '<div class="col-lg-4 col-md-6 col-sm-6">';
-                                echo '<div class="product__item">';
-                                echo '<div class="product__item__pic set-bg" data-setbg="product_images/' . $image['image'] . '">';
+                                echo '<div class="shadow col-lg-4 col-md-6 col-sm-6 rounded">';
+                                echo '<div class=" product__item ">';
+                                echo '<div class="product__item__pic set-bg rounded" data-setbg="product_images/' . $image['image'] . '">';
                             }
                             echo '<ul class="product__item__pic__hover">';
                             echo ' <li><a href="add_wishlist.php?pid='.$product['pid'].' "><i class="fa fa-heart"></i></a></li>';

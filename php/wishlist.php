@@ -1,7 +1,3 @@
-<?php
-session_start();
-$id = $_SESSION['u']['userid'];
-?>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +19,7 @@ $id = $_SESSION['u']['userid'];
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">\
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
 
 
@@ -31,7 +27,8 @@ $id = $_SESSION['u']['userid'];
 </head>
 
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php';
+    $id = $_SESSION['u']['userid']; ?>
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
