@@ -113,7 +113,7 @@
                             <li>Subtotal <span>' . $netPrice . '</span></li>
                             <li>Total <span>' . $netPrice . '</span></li>
                         </ul>
-                        <a href="addaddress.php?cart_id=' . $cartId . '&net_price=' . $netPrice . ' " class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="select_address.php?cart_id=' . $cartId . '&net_price=' . $netPrice . ' " class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
@@ -155,16 +155,16 @@
             exit;
         }
         ?>
-        <section class="shoping-cart spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="shoping__cart__table">
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
 
 
 
 
-                            <?php
+                        <?php
 
                             displayCart();
     }

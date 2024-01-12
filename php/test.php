@@ -2,83 +2,94 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Bootstrap 4 Responsive Sidebar</title>
+    <style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        height: 100%;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #343a40;
+        /* Dark background color */
+        padding: 20px;
+        border-right: 1px solid #606060;
+        /* Border color */
+    }
+
+    .sidebar a {
+        color: #fff;
+        /* Text color */
+        text-decoration: none;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .sidebar a:hover {
+        background-color: #505050;
+        /* Hover background color */
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .wrapper {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            margin-bottom: 10px;
+            border: none;
+            /* Remove border on smaller screens */
+        }
+    }
+    </style>
 </head>
 
 <body>
 
-  <!-- calcilater -->
+    <div class="wrapper">
+        <nav class="sidebar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse"
+                aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-  <form action="test.php" method="post">
+            <div class="collapse" id="sidebarCollapse">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Home</a>
+                    <a href="#" class="list-group-item list-group-item-action">About</a>
+                    <a href="#" class="list-group-item list-group-item-action">Services</a>
+                    <a href="#" class="list-group-item list-group-item-action">Contact</a>
+                </div>
+            </div>
+        </nav>
 
+        <div class="content">
+            <h2>Main Content</h2>
+            <p>This is the main content area. You can add your page content here.</p>
+        </div>
+    </div>
 
-    <label for="fname">First name:</label>
-    <input type="text" name="fname">
-    <br><br>
-
-    <label for="lname">Last name:</label>
-    <input type="text" name="lname">
-    <br><br>
-
-    <label for="age">age:</label>
-    <input type="text" name="age">
-    <br><br>
-
-    <label for="dob">date of birth:</label>
-    <input type="date" name="dob">
-    <br><br>
-
-
-    <select name="gender">
-      <option value="0" selected>--select gender --</option>
-      <option value="male">male</option>
-      <option value="female">female</option>
-    </select>
-    <br><br>
-
-
-    <label for="address">address:</label>
-    <input type="text" name="address">
-    <br><br>
-
-    <label for="email">email:</label>
-    <input type="text" name="email">
-    <br><br>
-
-    <input type="submit" name="submit" value="add user">
-
-
-
-
-  </form>
-  <?php
-  include 'testconnect.php';
-
-
-
-  if (isset($_POST['submit'])) {
-
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $age = $_POST['age'];
-    $dob = $_POST['dob'];
-    $gender = $_POST['gender'];
-    $address = $_POST['address'];
-    $email = $_POST['email'];
-
-
-    $sql = "INSERT INTO user (fname,lname,age,dob,gender,address,email) Value('$fname','$lname','$age','$dob',' $gender ','$address','$email');";
-    mysqli_query($connect, $sql);
-
-  }
-
-  ?>
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 

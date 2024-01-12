@@ -5,6 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill information</title>
+    <style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        height: 100%;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .wrapper {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        height: 100%;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .sidebar a {
+            float: left;
+        }
+
+        .content {
+            margin-left: 0;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+        }
+    }
+
+    /* Additional modifications for smaller screens */
+    @media screen and (max-width: 320px) {
+        .sidebar {
+            padding: 10px;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    }
+
+    /* Additional modifications for larger screens */
+    @media screen and (min-width: 1200px) {
+        .sidebar {
+            width: 300px;
+        }
+    }
+    </style>
 </head>
 
 <body>
@@ -19,13 +120,28 @@
     $sql = "SELECT * FROM address WHERE userid = $userId";
     $result = $connect->query($sql);
     ?>
-
     <section class="product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="wrapper">
+                        <nav class="sidebar">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+                            </button>
 
+                            <div class="collapse" id="sidebarCollapse">
+                                <div class="list-group">
+                                    <a href="userprofile.php" class="list-group-item list-group-item-action">My
+                                        profile</a>
+                                    <a href="my_orders.php" class="list-group-item list-group-item-action">My Orders</a>
+                                    <a href="addresses.php" class="list-group-item list-group-item-action">Addresses</a>
+                                    <a href="logout.php" class="list-group-item list-group-item-action">Logout</a>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
@@ -51,7 +167,7 @@
                                     echo "<td>" . $row["town"] . "</td>";
 
                                     echo "<td>" . $row["Postcode"] . "</td>";
-                                    echo '<td><a href="Add_order.php?addressid=' . $row["addressid"] . '" class="btn btn-outline-success btn-md" <i class="bi bi-check2"></i> Select
+                                    echo '<td><a href="delete_address.php?addressid=' . $row["addressid"] . '" class="btn btn-outline-danger btn-md"> <i class="fa fa-trash"></i> Delete
                                     </a></td>';
 
                                     echo "</tr>";
@@ -87,7 +203,7 @@
                                 <input type="text" class="form-control" name="postal_code" required>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Add</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
                         </form>
                     </div>
 
