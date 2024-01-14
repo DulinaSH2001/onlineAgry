@@ -8,142 +8,142 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQ9bs0YO6Fh7CBK3IeJW7qDJ9U9C9ApeP" crossorigin="anonymous">
     <style type="text/css">
-    /* Your custom styles go here */
+        /* Your custom styles go here */
 
 
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-    }
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
 
-    .wrapper {
-        display: flex;
-        height: 100%;
-    }
-
-    .sidebar {
-        width: 250px;
-        background-color: #f8f9fa;
-        padding: 20px;
-    }
-
-    .content {
-        flex: 1;
-        padding: 20px;
-    }
-
-    /* Responsive styles */
-    @media (max-width: 768px) {
         .wrapper {
-            flex-direction: column;
+            display: flex;
+            height: 100%;
         }
 
         .sidebar {
-            width: 100%;
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .wrapper {
+            display: flex;
+            height: 100%;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        /* Additional modifications for smaller screens */
+        @media screen and (max-width: 320px) {
+            .sidebar {
+                padding: 10px;
+            }
+
+            .content {
+                padding: 10px;
+            }
+        }
+
+        /* Additional modifications for larger screens */
+        @media screen and (min-width: 1200px) {
+            .sidebar {
+                width: 300px;
+            }
+        }
+
+        body {
+            background: #eee;
+        }
+
+        .order-card {
+            display: flex;
+            justify-content: space-between;
+            /* Align items to the start and end of the container */
+            border: 1px solid #ccc;
+            border-radius: 5px;
             margin-bottom: 10px;
-        }
-    }
-
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-    }
-
-    .wrapper {
-        display: flex;
-        height: 100%;
-    }
-
-    .sidebar {
-        width: 250px;
-        background-color: #f8f9fa;
-        padding: 20px;
-    }
-
-    .content {
-        flex: 1;
-        padding: 20px;
-    }
-
-    /* Responsive styles */
-    @media screen and (max-width: 700px) {
-        .sidebar {
+            padding: 10px;
+            background-color: white;
+            max-width: 600px;
             width: 100%;
-            height: auto;
-            position: relative;
         }
 
-        .sidebar a {
-            float: left;
+        .order-details {
+            flex: 1;
         }
 
-        .content {
-            margin-left: 0;
+
+        .order-actions {
+            margin-left: 10px;
+            /* Add some space between details and view button */
         }
-    }
-
-    @media screen and (max-width: 400px) {
-        .sidebar a {
-            text-align: center;
-            float: none;
-        }
-    }
-
-    /* Additional modifications for smaller screens */
-    @media screen and (max-width: 320px) {
-        .sidebar {
-            padding: 10px;
-        }
-
-        .content {
-            padding: 10px;
-        }
-    }
-
-    /* Additional modifications for larger screens */
-    @media screen and (min-width: 1200px) {
-        .sidebar {
-            width: 300px;
-        }
-    }
-
-    body {
-        background: #eee;
-    }
-
-    .order-card {
-        display: flex;
-        justify-content: space-between;
-        /* Align items to the start and end of the container */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: white;
-        max-width: 600px;
-        width: 100%;
-    }
-
-    .order-details {
-        flex: 1;
-    }
-
-
-    .order-actions {
-        margin-left: 10px;
-        /* Add some space between details and view button */
-    }
     </style>
 </head>
 
 <body>
 
     <?php include 'header.php';
-    sessio
+    session_start();
     $userid = $_SESSION['u']['userid'];
 
     // Check if the session is not started
@@ -215,100 +215,100 @@
 
 
 
-                            <div class="card order-card">
-                                <div class="order-details">
-                                    <h5 class="title"><strong>#00000
-                                            <?= $orderId ?>
-                                        </strong></h5>
-                                    <p class="text">Cost: $
-                                        <?= $totalPrice ?>
-                                    </p>
-                                    <p class="card-text">Order made on:
-                                        <?= $date ?>
-                                    </p>
-                                    <!-- Add order status here -->
-                                    <p class="card-text text-right"><strong>Status:</strong> Checking Quality</p>
-                                </div>
-                                <div class="order-actions text-right">
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                        data-target="#orderDetailsModal<?= $orderId ?>">
-                                        View
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <!-- ... (previous code) ... -->
-
-                            <!-- Order Details Modal -->
-                            <div class="modal fade" id="orderDetailsModal<?= $orderId ?>" tabindex="-1" role="dialog"
-                                aria-labelledby="orderDetailsModalLabel<?= $orderId ?>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderDetailsModalLabel<?= $orderId ?>">Order
-                                                Details</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                        <div class="card order-card">
+                                            <div class="order-details">
+                                                <h5 class="title"><strong>#00000
+                                                        <?= $orderId ?>
+                                                    </strong></h5>
+                                                <p class="text">Cost: $
+                                                    <?= $totalPrice ?>
+                                                </p>
+                                                <p class="card-text">Order made on:
+                                                    <?= $date ?>
+                                                </p>
+                                                <!-- Add order status here -->
+                                                <p class="card-text text-right"><strong>Status:</strong> Checking Quality</p>
+                                            </div>
+                                            <div class="order-actions text-right">
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                    data-target="#orderDetailsModal<?= $orderId ?>">
+                                                    View
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
 
-                                            <div class="row mb-3">
-                                                <div class="col-md-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Order Information</h5>
-                                                            <p class="card-text"><strong>Order ID:</strong>
-                                                                <?= $orderId ?>
-                                                            </p>
-                                                            <p class="card-text"><strong>Order Date:</strong>
-                                                                <?= $date ?>
-                                                            </p>
-                                                            <!-- Include additional order details as needed -->
-                                                        </div>
+
+                                        <!-- ... (previous code) ... -->
+
+                                        <!-- Order Details Modal -->
+                                        <div class="modal fade" id="orderDetailsModal<?= $orderId ?>" tabindex="-1" role="dialog"
+                                            aria-labelledby="orderDetailsModalLabel<?= $orderId ?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="orderDetailsModalLabel<?= $orderId ?>">Order
+                                                            Details</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Billing Information</h5>
-                                                            <p class="card-text"><strong>Total Price:</strong> $
-                                                                <?= $totalPrice ?>
-                                                            </p>
-                                                            <p class="card-text"><strong>Address ID:</strong>
-                                                                <?= $addressId ?>
-                                                            </p>
-                                                            <?php
+                                                    <div class="modal-body">
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-4">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Order Information</h5>
+                                                                        <p class="card-text"><strong>Order ID:</strong>
+                                                                            <?= $orderId ?>
+                                                                        </p>
+                                                                        <p class="card-text"><strong>Order Date:</strong>
+                                                                            <?= $date ?>
+                                                                        </p>
+                                                                        <!-- Include additional order details as needed -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Billing Information</h5>
+                                                                        <p class="card-text"><strong>Total Price:</strong> $
+                                                                            <?= $totalPrice ?>
+                                                                        </p>
+                                                                        <p class="card-text"><strong>Address ID:</strong>
+                                                                            <?= $addressId ?>
+                                                                        </p>
+                                                                        <?php
                                                                         // Fetch address from address table for the given address ID
                                                                         $addressQuery = "SELECT * FROM address WHERE addressid = $addressId";
                                                                         $addressResult = $connect->query($addressQuery);
                                                                         $address = $addressResult->fetch_assoc();
                                                                         ?>
-                                                            <p class="card-text"><strong>Address:</strong>
-                                                                <?= $address['street_address'] ?><br>
-                                                                <?= $address['town'] ?><br>
-                                                                <?= $address['Postcode'] ?>
-                                                            </p>
+                                                                        <p class="card-text"><strong>Address:</strong>
+                                                                            <?= $address['street_address'] ?><br>
+                                                                            <?= $address['town'] ?><br>
+                                                                            <?= $address['Postcode'] ?>
+                                                                        </p>
 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Product List -->
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Product Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>Unit Price</th>
-                                                            <th>Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
+                                                        <!-- Product List -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product Name</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Unit Price</th>
+                                                                        <th>Total</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
                                                                     foreach ($cartProducts as $cartProduct) {
                                                                         echo '<tr>';
                                                                         echo '<td>' . $cartProduct['name'] . '</td>';
@@ -319,45 +319,45 @@
                                                                     }
                                     }
                                     ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
 
-                                            <!-- Tracking Details -->
-                                            <div class="card mt-3">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Tracking Information</h5>
-                                                    <div
-                                                        class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
-                                                        <div class="w-100 text-center py-1 px-2"><span
-                                                                class="text-medium">Shipped
-                                                                Via:</span> UPS Ground</div>
-                                                        <div class="w-100 text-center py-1 px-2"><span
-                                                                class="text-medium">Status:</span>
-                                                            Checking Quality</div>
-                                                        <div class="w-100 text-center py-1 px-2"><span
-                                                                class="text-medium">Expected
-                                                                Date:</span> SEP 09, 2017</div>
+                                                    <!-- Tracking Details -->
+                                                    <div class="card mt-3">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Tracking Information</h5>
+                                                            <div
+                                                                class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+                                                                <div class="w-100 text-center py-1 px-2"><span
+                                                                        class="text-medium">Shipped
+                                                                        Via:</span> UPS Ground</div>
+                                                                <div class="w-100 text-center py-1 px-2"><span
+                                                                        class="text-medium">Status:</span>
+                                                                    Checking Quality</div>
+                                                                <div class="w-100 text-center py-1 px-2"><span
+                                                                        class="text-medium">Expected
+                                                                        Date:</span> SEP 09, 2017</div>
+                                                            </div>
+                                                            <div
+                                                                class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                                                                <!-- Include your tracking steps here -->
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div
-                                                        class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-                                                        <!-- Include your tracking steps here -->
-                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
 
-                            <?php
+                                    <?php
                                 }
                             } else {
                                 echo "<p>No orders found.</p>";
