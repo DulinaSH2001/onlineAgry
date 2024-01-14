@@ -14,7 +14,7 @@
     html {
         height: 100%;
         margin: 0;
-        font-family: 'Arial', sans-serif;
+
     }
 
     .wrapper {
@@ -49,7 +49,7 @@
     html {
         height: 100%;
         margin: 0;
-        font-family: 'Arial', sans-serif;
+
     }
 
     .wrapper {
