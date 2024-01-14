@@ -11,47 +11,69 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Products</title>
+    <title>sign up </title>
     <link rel="stylesheet" href="../css/styles.css">
 
 
 </head>
 
 <body>
-    <form action="Signup.php" method='post'>
-        <div class="form-group">
-            <label for="firstname">First name:</label>
-            <input type="text" class="form-control" name="Fname"></br>
-        </div>
-        <div class="form-group"> <label for="Lastname">Last name:</label>
-            <input type="text" class="form-control" name="Lname"></br>
-        </div>
-        <div class="form-group"> <label for="dob">Date of birth:</label>
-            <input type="date" class="form-control" ?name="dob"></br>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" name="email"></br>
-        </div>
-        <div class="form-group">
-            <label for="Mobile">Mobile number :</label>
-            <input type="tel" class="form-control" name="tel"></br>
-        </div>
-        <div class="form-group">
-            <label for="Username">Username:</label>
-            <input type="text" class="form-control" name="username"></br>
-        </div>
+    <?php include 'header.php'; ?>
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="wrapper">
 
 
-        <div class="form-group"> <label for="Password">Password :</label>
-            <input type="text" class="form-control" name="password"></br>
+
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    <div class="profile-form">
+                        <div class="container">
+                            <form action="Signup.php" method='post' class="mt-5">
+                                <div class="form-group">
+                                    <label for="firstname">First name:</label>
+                                    <input type="text" class="form-control" name="Fname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Lastname">Last name:</label>
+                                    <input type="text" class="form-control" name="Lname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Date of birth:</label>
+                                    <input type="date" class="form-control" name="dob">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="text" class="form-control" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Mobile">Mobile number:</label>
+                                    <input type="tel" class="form-control" name="tel">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Username">Username:</label>
+                                    <input type="text" class="form-control" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password">Password:</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <button type="submit" class="btn btn-success">Register</button>
+                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-
-        <button type="submit" class="btn btn-primary">Register</button>
-        <button type="reset">Reset</button>
-    </form>
+    </section>
+    <?php include 'footer.php'; ?>
     <?php
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

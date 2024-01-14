@@ -28,22 +28,21 @@
     <?php
     include 'connect.php';
 
-    // The rest of your main file's code goes here
+
     ?>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- Include Bootstrap JS -->
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <style>
-        /* Remove hyperlink hover effect */
-        .link-secondary,
-        .link-secondary:hover {
-            color: #89ac4b;
-            /* Use the same color as the normal state */
-            text-decoration: none;
-            /* Remove underline or any other decoration */
-        }
+    .link-secondary,
+    .link-secondary:hover {
+        color: #89ac4b;
+
+        text-decoration: none;
+
+    }
     </style>
     <div id="google_translate_element">
 
@@ -86,18 +85,27 @@
             </div>
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
-                    <li class="active"><a href="./index.html">Home</a></li>
-                    <li><a href="./shop-grid.html">Shop</a></li>
-                    <li><a href="#">Pages</a>
-                        <ul class="header__menu__dropdown">
-                            <li><a href="product_List.php">Shop Details</a></li>
-                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                            <li><a href="./checkout.html">Check Out</a></li>
-                            <li><a href="./blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li class="active"><a href="./index.php">Home</a></li>
+                    <li><a href="./product_List.php">Shop</a></li>
+
+                    <?php
+                    if (isset($_SESSION['u']['userid'])) {
+                        echo '
+                                        <li><a href="userprofile.php">My Profile</a>
+                                        <ul class="header__menu__dropdown">
+                                            
+                                            <li><a href="./my_orders.php">My Orders</a></li>
+                                            <li><a href="./address.php">Address</a></li>
+                                            <li><a href="./logout">Logout</a></li>
+                                        </ul>
+                                    </li>';
+                    } else {
+                        echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
+                    }
+                    ?>
+
+                    <li><a href="./blog.html">Contact us</a></li>
+
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
@@ -172,13 +180,29 @@
                         <nav class="header__menu">
                             <ul>
                                 <li><a href="./index.html">Home</a></li>
-                                <li class="active"><a href="./shop-grid.html">Shop</a></li>
+                                <li class="active"><a href="product_List.php">Shop</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
-                                        <li><a href="">Shop Details</a></li>
-                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                        <li><a href="./checkout.html">Check Out</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li class="active"><a href="./index.php">Home</a></li>
+                                        <li><a href="./product_List.php">Shop</a></li>
+
+                                        <?php
+                                        if (isset($_SESSION['u']['userid'])) {
+                                            echo '
+                                        <li><a href="userprofile.php">My Profile</a>
+                                        <ul class="header__menu__dropdown">
+                                            
+                                            <li><a href="./my_orders.php">My Orders</a></li>
+                                            <li><a href="./address.php">Address</a></li>
+                                            <li><a href="./logout">Logout</a></li>
+                                        </ul>
+                                    </li>';
+                                        } else {
+                                            echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
+                                        }
+                                        ?>
+
+                                        <li><a href="./blog.html">Contact us</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Blog</a></li>
@@ -292,8 +316,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="hero__categories">
-                            <div class="shadow hero__categories__all">
+                        <div class="hero__categories rounded">
+                            <div class="shadow hero__categories__all rounded">
                                 <i class="fa fa-bars"></i>
                                 <span>All catagory</span>
                             </div>
@@ -309,11 +333,11 @@
 
                             <ul>
                                 <?php foreach ($categories as $category): ?>
-                                    <li><a
-                                            href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
-                                            <?php echo $category['categoryname']; ?>
-                                        </a>
-                                    </li>
+                                <li><a
+                                        href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
+                                        <?php echo $category['categoryname']; ?>
+                                    </a>
+                                </li>
                                 <?php endforeach; ?>
 
                             </ul>
@@ -321,11 +345,12 @@
                     </div>
                     <div class=" col-lg-9">
                         <div class="hero__search">
-                            <div class="hero__search__form">
+                            <div class="hero__search__form rounded-left">
                                 <form action="search.php" method="get">
 
-                                    <input type="text" name="search" placeholder="What do you need?">
-                                    <button type="submit" class=" site-btn">SEARCH</button>
+                                    <input type="text" name="search" class="rounded-left"
+                                        placeholder="What do you need?">
+                                    <button type="submit" class="site-btn rounded-right">SEARCH</button>
                                 </form>
                                 <div class="hero__search__phone">
                                     <div class="hero__search__phone__icon">
@@ -343,4 +368,3 @@
         </section>
 
 </body>
-<!-- Hero Section End -->

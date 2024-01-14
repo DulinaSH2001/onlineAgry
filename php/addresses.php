@@ -203,7 +203,7 @@
                                 <input type="text" class="form-control" name="postal_code" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-success">Add</button>
                         </form>
                     </div>
 

@@ -92,13 +92,13 @@
                             <div class="quantity">
                                 <div class="pro-qty">
 
-                                    <input type="text" min="1" value="1" name="qty" id="quantityInput">
+                                    <input type="text" min="1" value="1" name="qty" id="quantityInput" class="rounded">
 
                                 </div>
                             </div>
                         </div>
                         <a href="#" class="primary-btn" id="addToCartBtn">
-                            <button type="submit" class="site-btn" value="addcart">add to cart
+                            <button type="submit" class="btn site-btn rounded" value="addcart">add to cart
                             </button>
                         </a>
                         <a href="add_wishlist.php?pid=<?php echo $productId; ?>" class="heart-icon"><span
