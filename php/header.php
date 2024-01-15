@@ -185,15 +185,15 @@
             </nav>
             <div id="mobile-menu-wrap"></div>
             <div class="header__top__right__social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                <a href="https://www.facebook.com/people/Saradha-Lanka-Agro-Company/61554719785903/"><i
+                        class="fa fa-facebook"></i></a>
+                <a href="https://wa.me/940771977766"><i class="fa fa-whatsapp"></i></a>
+
             </div>
             <div class="humberger__menu__contact">
                 <ul>
-                    <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                    <li>Free Shipping for all Order of $99</li>
+                    <li><i class="fa fa-envelope"></i>saradhalankagaro@gmail.com</li>
+
                 </ul>
             </div>
         </div>
@@ -259,7 +259,7 @@
                                     // Check if the current page is any of the user profile-related pages
                                     $isUserProfilePage = in_array(
                                         basename($_SERVER['PHP_SELF']),
-                                        array('userprofile.php', 'my_orders.php', 'address.php')
+                                        array('userprofile.php', 'my_orders.php', 'Addresses.php')
                                     );
 
                                     echo ($isUserProfilePage) ? 'active' : ''; // Add 'active' class if true
@@ -268,7 +268,7 @@
                         <a href="userprofile.php">My Profile</a>
                         <ul class="header__menu__dropdown">
                             <li><a href="./my_orders.php">My Orders</a></li>
-                            <li><a href="./address.php">Address</a></li>
+                            <li><a href="./Addresses.php">Address</a></li>
                             <li><a href="./logout">Logout</a></li>
                         </ul>
                     </li>';

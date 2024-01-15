@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Redirect to the addresses.php page after successful insertion
-        echo "<script>window.location.href = 'addresses.php';</script>";
+        echo "<script>window.location.href = 'select_address.php';</script>";
         exit();
     } else {
         // Handle error, redirect or display an error message

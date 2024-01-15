@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($connect->query($mainAddressSql) !== TRUE) {
         echo "Error inserting main address: " . $connect->error;
     } else {
-        echo '<script>window.location.href = "select_address.php";</script>';
+        echo '<script>window.location.href = "Addresses.php";</script>';
     }
 }
 ?>

@@ -93,7 +93,9 @@ include 'connect.php';
         $sql = "INSERT INTO users (userid ,fname, lname,dob, phone, email, password, username,status) VALUES ('$user_id','$firstname', '$lastname','$dob', '$tel', '$email', '$password', '$username','$status')";
 
         if (mysqli_query($connect, $sql)) {
-            header("Location: login.php");
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "login.php";';
+            echo '</script>';
             exit();
         } else {
             echo "Error: " . mysqli_error($connect);
