@@ -176,8 +176,8 @@
                             <h2 class="mt-4 mb-4">My Orders</h2>
 
                             <?php
-                            $userid=$_SESSION['u']['userid'];
-                            $sql = "SELECT cartid, orderid, tprice, addressid, date FROM orders WHERE userid = $userid";
+                            $userid = $_SESSION['u']['userid'];
+                            $sql = "SELECT cartid, orderid, tprice, addressid, date FROM orders WHERE userid = $userid ORDER BY date DESC";
                             $result = $connect->query($sql);
 
                             if ($result->num_rows > 0) {

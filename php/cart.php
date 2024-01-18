@@ -55,13 +55,13 @@
                         }
                         echo '<h5>' . $product['name'] . '</h5>';
                         echo ' </td>
-                                    <td class="shoping__cart__price">' . $product['price'] . '';
+                                    <td class="shoping__cart__price">Rs ' . $product['price'] . '';
                         echo ' </td>';
                         echo ' 
-                        <td class="shoping__cart__price">' . $cartProduct['qty'] . '';
+                        <td class="shoping__cart__price">' . number_format($cartProduct['qty'], 2) . '';
                         echo ' </td>';
                         echo ' 
-                        <td class="shoping__cart__price">' . $cartProduct['q_price'] . '';
+                        <td class="shoping__cart__price">Rs ' . number_format($cartProduct['q_price'], 2) . '';
                         echo ' </td>';
 
 
@@ -110,8 +110,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>' . $netPrice . '</span></li>
-                            <li>Total <span>' . $netPrice . '</span></li>
+                            <li>Subtotal <span>Rs ' . number_format($netPrice, 2) . '</span></li>
+                            <li>Total <span>Rs ' . number_format($netPrice, 2) . '</span></li>
                         </ul>
                         <a href="select_address.php?cart_id=' . $cartId . '&net_price=' . $netPrice . ' " class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -155,16 +155,16 @@
             exit;
         }
         ?>
-    <section class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
+        <section class="shoping-cart spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="shoping__cart__table">
 
 
 
 
-                        <?php
+                            <?php
 
                             displayCart();
     }

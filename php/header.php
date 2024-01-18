@@ -16,11 +16,10 @@
 
 <body>
     <?php session_start();
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1); ?>
+    ?>
 
 
-    <!-- Page Preloder -->
+   
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -36,13 +35,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <style>
-        .link-secondary,
-        .link-secondary:hover {
-            color: #89ac4b;
+    .link-secondary,
+    .link-secondary:hover {
+        color: #89ac4b;
 
-            text-decoration: none;
+        text-decoration: none;
 
-        }
+    }
     </style>
     <div id="google_translate_element">
 
@@ -134,9 +133,9 @@
                     // Calculate and display total price
                     $cartProducts = getCartProducts($cartId);
                     $totalPrice = calculateNetPrice($cartProducts);
-                    echo '<div class="header__cart__price">item: <span>$' . number_format($totalPrice, 2) . '</span></div>';
+                    echo '<div class="header__cart__price">item: <span>Rs ' . number_format($totalPrice, 2) . '</span></div>';
                 } else {
-                    echo '<div class="header__cart__price">item: <span>$0</span></div>';
+                    echo '<div class="header__cart__price">item: <span>Rs 0.00</span></div>';
                 }
 
                 ?>
@@ -247,7 +246,8 @@
                             <ul>
                                 <li <?php echo ($_SERVER['PHP_SELF'] == '/index.php') ? 'class="active"' : ''; ?>>
                                     <a href="./index.php">Home</a>
-                                <li <?php echo ($_SERVER['PHP_SELF'] == '/product_List.php') ? 'class="active"' : ''; ?>>
+                                <li
+                                    <?php echo ($_SERVER['PHP_SELF'] == '/product_List.php') ? 'class="active"' : ''; ?>>
                                     <a href="product_List.php">Shop</a>
                                 </li>
 
@@ -330,9 +330,9 @@
                                 // Calculate and display total price
                                 $cartProducts = getCartProducts($cartId);
                                 $totalPrice = calculateNetPrice($cartProducts);
-                                echo '<div class="header__cart__price">item: <span>$' . number_format($totalPrice, 2) . '</span></div>';
+                                echo '<div class="header__cart__price">item: <span>Rs ' . number_format($totalPrice, 2) . '</span></div>';
                             } else {
-                                echo '<div class="header__cart__price">item: <span>$0</span></div>';
+                                echo '<div class="header__cart__price">item: <span>Rs 0.00</span></div>';
                             }
 
                             ?>
@@ -369,11 +369,11 @@
 
                             <ul>
                                 <?php foreach ($categories as $category): ?>
-                                    <li><a
-                                            href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
-                                            <?php echo $category['categoryname']; ?>
-                                        </a>
-                                    </li>
+                                <li><a
+                                        href="category_product.php?category=<?php echo urlencode($category['catid']); ?>">
+                                        <?php echo $category['categoryname']; ?>
+                                    </a>
+                                </li>
                                 <?php endforeach; ?>
 
                             </ul>

@@ -4,24 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+        integrity="sha384-u7U/VuhEEG9byKJb7wceFFcfdsHOnhGGpzDJwVl5qowmqu/6+jFVEeuU9fWOlZ+1" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oMqFNp6Ew94ZCDYuxFnFyZQL+I3EmuKl3wZ5f+C7XkhfXTsk70ug/6UElRU5eME6" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQ9bs0YO6Fh7CBK3IeJW7qDJ9U9C9ApeP" crossorigin="anonymous">
+        </script>
 
     <script>
-    function updateSubcategories() {
-        var categoryId = $("#category").val();
+        function updateSubcategories() {
+            var categoryId = $("#category").val();
 
-        $.ajax({
-            url: "getsubcategories.php", //
-            type: "POST",
-            data: {
-                categoryId: categoryId
-            },
-            success: function(data) {
+            $.ajax({
+                url: "getsubcategories.php",
+                type: "POST",
+                data: {
+                    categoryId: categoryId
+                },
+                success: function (data) {
+                    $("#subcategory").html(data);
+                }
+            });
+        }
 
-                $("#subcategory").html(data);
+        function readMultiURL(input, previewId) {
+            if (input.files) {
+                var fileCount = input.files.length;
+                for (var i = 0; i < fileCount; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#' + previewId).append('<img src="' + e.target.result +
+                            '" style="max-width: 200px; margin-top: 10px;">');
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
             }
-        });
-    }
+        }
+
+        function readURL(input, previewId) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#' + previewId).attr('src', e.target.result);
+                    $('#' + previewId).show();
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
+
+
     <title>Add Product with Images</title>
 </head>
 
@@ -48,94 +83,111 @@
                             <p class="card-description">
 
                             </p>
-                            <form class="forms-sample">
 
 
-                                <form enctype="multipart/form-data" action="addproduct.php" method="post">
 
-                                    <div class="form-group">
-                                        <label for="product_name">Product Name:</label>
-                                        <input type="text" class="form-control" id="product_name" name="name" required>
-                                    </div>
+                            <form enctype="multipart/form-data" action="addproduct.php" method="post"
+                                class="forms-sample">
 
-                                    <div class="form-group">
-                                        <label for="description">Description:</label>
-                                        <textarea class="form-control" id="description" name="description"
-                                            required></textarea>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="product_name">Product Name:</label>
+                                    <input type="text" class="form-control" id="product_name" name="name" required>
+                                </div>
 
-                                    <?php
-                                    //get categories 
-                                    include 'connect.php';
+                                <div class="form-group">
+                                    <label for="description">Description:</label>
+                                    <textarea class="form-control form-control-" id="description" name="description"
+                                        rows="6" required></textarea>
+                                </div>
 
-                                    $sql = "SELECT * FROM category";
-                                    $result = $connect->query($sql);
+                                <?php
+                                //get categories 
+                                include 'connect.php';
 
-                                    $categories = [];
-                                    while ($row = $result->fetch_assoc()) {
-                                        $categories[] = $row;
-                                    }
-                                    ?>
+                                $sql = "SELECT * FROM category";
+                                $result = $connect->query($sql);
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Category</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control form-control" name="category"
-                                                        id="category" onchange="updateSubcategories()">
-                                                        <option>--select category--</option>
-                                                        <?php foreach ($categories as $category): ?>
+                                $categories = [];
+                                while ($row = $result->fetch_assoc()) {
+                                    $categories[] = $row;
+                                }
+                                ?>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Category</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control form-control" name="category" id="category"
+                                                    onchange="updateSubcategories()">
+                                                    <option>--select category--</option>
+                                                    <?php foreach ($categories as $category): ?>
 
                                                         <option value="<?php echo $category['catid']; ?>">
                                                             <?php echo $category['categoryname']; ?>
                                                         </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">SubCategory</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control" name="subcategory" id="subcategory"
-                                                        required>
-                                                        <option>--select subcategory--</option>
-                                                    </select>
-                                                </div>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="price">Price:</label>
-                                        <input type="number" class="form-control" id="price" name="price" step="0.01"
-                                            required>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">SubCategory</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="subcategory" id="subcategory"
+                                                    required>
+                                                    <option>--select subcategory--</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="qty">Qty:</label>
-                                        <input type="number" class="form-control" id="qty" name="qty" step="0.01"
-                                            required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Price :</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="price" name="price"
+                                                    step="0.01" required>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Qty:</label>
+                                            <div class="col-sm-9">
 
-                                    <div class="form-group">
-                                        <label for="Logo_image">Logo image :</label>
-                                        <input type="file" class="form-control" id="Logo_image" name="Logo_image"
-                                            accept=".jpg, .jpeg,.png" required>
+                                                <input type="number" class="form-control" id="qty" name="qty"
+                                                    step="0.01" required>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="more_image">More images :(add 2 or more images)</label>
-                                        <input type="file" class="form-control" id="more_image" name="more_image[]"
-                                            accept=".jpg, .jpeg,.png" required multiple>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="Logo_image">Logo image :</label>
+                                    <input type="file" class="form-control" id="Logo_image" name="Logo_image"
+                                        accept=".jpg, .jpeg, .png" onchange="readURL(this, 'logoImagePreview')"
+                                        required>
+                                    <img id="logoImagePreview" src="#" alt="Logo Image Preview"
+                                        style="max-width: 200px; margin-top: 10px; display: none;">
+                                </div>
 
-                                    <button type="submit" name="submit" class="btn btn-primary">Add
-                                        Product</button>
-                                </form>
+                                <div class="form-group">
+                                    <label for="more_image">More images: (add 2 or more images)</label>
+                                    <input type="file" class="form-control" id="more_image" name="more_image[]"
+                                        accept=".jpg, .jpeg, .png" onchange="readMultiURL(this, 'moreImagePreview')"
+                                        required multiple>
+                                    <div id="moreImagePreview" style="margin-top: 10px;"></div>
+
+                                </div>
+
+                                <button type="submit" name="submit" class="btn btn-primary">Add
+                                    Product</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -170,7 +222,7 @@
                     $logoImageExtension = strtolower($logoImageExtension);
 
                     $newLogoName = uniqid() . '.' . $logoImageExtension;
-                    move_uploaded_file($tmpLogoName, 'product_images/' . $newLogoName);
+                    move_uploaded_file($tmpLogoName, 'C:/xampp/htdocs/onlineAgry/php/product_images/' . $newLogoName);
 
                     $ptry = 1;
                     $queryLogo = "INSERT INTO products_image (pid, image, prt) VALUES (?, ?, ?)";
@@ -199,8 +251,11 @@
                         $imageExtension = strtolower(end($imageExtension));
 
                         $newimagename = uniqid() . '.' . $imageExtension;
-                        move_uploaded_file($tmpName, 'product_images/' . $newimagename);
+                        $imageDestination = 'C:/xampp/htdocs/onlineAgry/php/product_images/' . $newimagename;
+
+                        move_uploaded_file($tmpName, $imageDestination);
                         $fileArray[] = $newimagename;
+
                     }
 
                     $fileArrayStr = implode(",", $fileArray);
@@ -211,7 +266,8 @@
                     if ($stmt) {
                         mysqli_stmt_bind_param($stmt, 'sss', $pid, $fileArrayStr, $ptry);
                         if (mysqli_stmt_execute($stmt)) {
-                            header("Location: product_List.php");
+                            echo "<script>alert('Product added successfully!');</script>";
+                            echo "<script>window.location.href = 'addproduct.php';</script>";
                             exit();
                         } else {
                             echo "Error executing prepared statement: " . mysqli_stmt_error($stmt);
@@ -230,13 +286,13 @@
         <?php include 'footer.php'; ?>
         <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
             integrity="sha384-u7U/VuhEEG9byKJb7wceFFcfdsHOnhGGpzDJwVl5qowmqu/6+jFVEeuU9fWOlZ+1" crossorigin="anonymous">
-        </script>
+            </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oMqFNp6Ew94ZCDYuxFnFyZQL+I3EmuKl3wZ5f+C7XkhfXTsk70ug/6UElRU5eME6" crossorigin="anonymous">
-        </script>
+            </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQ9bs0YO6Fh7CBK3IeJW7qDJ9U9C9ApeP" crossorigin="anonymous">
-        </script>
+            </script>
 </body>
 
 </html>

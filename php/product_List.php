@@ -29,6 +29,11 @@
         background-color: #4CAF50;
         color: white;
     }
+
+    .product__item {
+        margin-bottom: 20px;
+        /* Adjust the value as needed */
+    }
     </style>
 </head>
 
@@ -134,8 +139,8 @@
 
 
                             while ($image = $resultImages->fetch_assoc()) {
-                                echo '<div class="shadow col-lg-4 col-md-6 col-sm-6 rounded">';
-                                echo '<div class="product__item">';
+                                echo '<div class="col-lg-4 col-md-6 col-sm-6 ">';
+                                echo '<div class="shadow product__item rounded">';
                                 echo '<div class="product__item__pic set-bg rounded" data-setbg="product_images/' . $image['image'] . '">';
                             }
                             echo '<ul class="product__item__pic__hover">';
@@ -149,27 +154,16 @@
 
                             echo '<h6><a href="product_details.php?&product_id=' . $product['pid'] . '">' . $product['name'] . '</a></h6>';
 
-                            echo '<h5>Price: $' . $product['price'] . '</h5>';
-                            // Buy Now Button
-                            // echo '<a href="product_details.php?user_id=' . $userId . '&product_id=' . $product['pid'] . '">';
-                            // echo '<button>Buy Now</button>';
-                            // echo '</a>';
-                        
-                            // Add to Wishlist Button
-                            // echo '<a href="wishlist.php?user_id=' . $userId . '&product_id=' . $product['pid'] . '">';
-                            // echo '<button>Add to Wishlist</button>';
-                            // echo '</a>';
+                            echo '<h5> Rs.' .number_format($product['price'],2)  . '</h5>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
-
-
-
+                            
                         }
                         ?>
 
                     </div>
-                    <!-- //pagination system  start  -->
+
                     <div class="product__pagination">
 
 

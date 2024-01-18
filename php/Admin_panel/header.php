@@ -104,24 +104,50 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">add
+                                        product </a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="pages/ui-features/typography.html">Typography</a></li>
+                                        href="pages/ui-features/typography.html">product table </a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">
-                            <i class="ti-layout-list-post menu-icon"></i>
-                            <span class="menu-title">Form elements</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-asic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-bookmark-alt menu-icon"></i>
+                            <span class="menu-title">Category Management </span>
+                            <i class="menu-arrow"></i>
                         </a>
+                        <div class="collapse" id="ui-asic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">add
+                                        Category </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                        Sub Category</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                        Category Table</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                        SubCategory Table</Table></a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
-                            <i class="ti-pie-chart menu-icon"></i>
-                            <span class="menu-title">Charts</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basi" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-book menu-icon"></i>
+                            <span class="menu-title">Orders management </span>
+                            <i class="menu-arrow"></i>
                         </a>
+                        <div class="collapse" id="ui-basi">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">New
+                                        Orders</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Tracking
+                                        Orders </a></li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="pages/ui-features/typography.html">Complete orders </a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/tables/basic-table.html">
