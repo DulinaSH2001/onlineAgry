@@ -137,23 +137,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="wrapper">
-                        <nav class="sidebar">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
-                            </button>
 
-                            <div class="collapse" id="sidebarCollapse">
-                                <div class="list-group">
-                                    <a href="userprofile.php" class="list-group-item list-group-item-action">My
-                                        profile</a>
-                                    <a href="my_orders.php" class="list-group-item list-group-item-action">My Orders</a>
-                                    <a href="addresses.php" class="list-group-item list-group-item-action">Addresses</a>
-                                    <a href="logout.php" class="list-group-item list-group-item-action">Logout</a>
-                                </div>
-                            </div>
-                        </nav>
 
 
                     </div>

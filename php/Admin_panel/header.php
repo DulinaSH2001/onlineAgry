@@ -13,23 +13,6 @@
 <body>
     <?php include 'connect.php'; ?>
     <div class="container-scroller">
-        <div class="row p-0 m-0 proBanner" id="proBanner">
-            <div class="col-md-12 p-0 m-0">
-                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-                    <div class="ps-lg-1">
-
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="https://www.bootstrapdash.com/product/royalui/"><i
-                                class="ti-home me-3 text-white"></i></a>
-                        <button id="bannerClose" class="btn border-0 p-0">
-                            <i class="ti-close text-white me-0"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo me-5" href="index.html"><img src="images/newlogo3.png" class="me-2"
@@ -90,7 +73,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="dashboard.php">
                             <i class="ti-shield menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -104,10 +87,10 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">add
+                                <li class="nav-item"> <a class="nav-link" href="addproduct.php">add
                                         product </a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="pages/ui-features/typography.html">product table </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="producttable.php">product table </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -120,13 +103,13 @@
                         </a>
                         <div class="collapse" id="ui-asic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">add
+                                <li class="nav-item"> <a class="nav-link" href="addcategory.php">add
                                         Category </a></li>
                                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
                                         Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">
                                         Category Table</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">
                                         SubCategory Table</Table></a></li>
                             </ul>
                         </div>
@@ -140,7 +123,7 @@
                         </a>
                         <div class="collapse" id="ui-basi">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">New
+                                <li class="nav-item"> <a class="nav-link" href="New_oredrs.php">New
                                         Orders</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Tracking
                                         Orders </a></li>
