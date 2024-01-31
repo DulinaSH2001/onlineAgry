@@ -105,7 +105,7 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="addcategory.php">add
                                         Category </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add
+                                <li class="nav-item"> <a class="nav-link" href="add_subcategory.php">Add
                                         Sub Category</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">
                                         Category Table</a></li>

@@ -10,9 +10,10 @@ if (isset($_GET['addressid'])) {
 
     $cartProducts = getCartProducts($cartId);
     $totalPrice = calculateNetPrice($cartProducts);
+    $status = 'new';
 
 
-    $query = "INSERT INTO `orders` (cartid, userid, addressid, tprice) VALUES ('$cartid', '$userId', '$addressid', '$totalPrice')";
+    $query = "INSERT INTO `orders` (cartid, userid, addressid, tprice ,status) VALUES ('$cartid', '$userId', '$addressid', '$totalPrice','$status')";
 
 
     $result = mysqli_query($connect, $query);

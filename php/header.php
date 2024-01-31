@@ -20,9 +20,9 @@
 
 
 
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <?php
     include 'connect.php';
@@ -41,6 +41,25 @@
 
         text-decoration: none;
 
+    }
+
+    .humberger__open {
+        position: fixed;
+        top: 20px;
+        /* Adjust the top distance according to your design */
+        left: 20px;
+        /* Adjust the right distance according to your design */
+        z-index: 1001;
+        /* Ensure a higher z-index to appear above the fixed header */
+        cursor: pointer;
+        /* Add a pointer cursor for better usability */
+        background-color: #ffffffba;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .hero__categories {
+            display: none !important;
+        }
     }
     </style>
     <div id="google_translate_element">
@@ -340,7 +359,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="humberger__open">
+                <div class="humberger__open rounded shadow">
                     <i class="fa fa-bars"></i>
                 </div>
             </div>
