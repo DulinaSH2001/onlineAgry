@@ -101,13 +101,14 @@
                                             <th>Customer Name</th>
                                             <th>Total Price</th>
                                             <th>Order Date</th>
+                                            <th>Tracking ID</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-$query = "SELECT * FROM orders WHERE status NOT IN ('Delivered','Cancelled') ORDER BY date DESC";
+$query = "SELECT * FROM orders WHERE status NOT IN ('Cancelled') ORDER BY date DESC";
 $result = $connect->query($query);
 
 if ($result && $result->num_rows > 0) {
@@ -134,9 +135,17 @@ if ($result && $result->num_rows > 0) {
                                                 }
                                                 ?>
                                             </td>
-                                            <td>Rs.<?php echo $row['tprice']; ?>.00</td>
+                                            <td><?php echo $row['tprice']; ?></td>
                                             <td><?php echo date('Y-m-d', strtotime($row['date'])); ?></td>
-
+                                            <td>
+                                                <?php 
+                                                if ($row['tracking_id'] == null) {
+                                                    echo "Not started delivery";
+                                                } else {
+                                                    echo $row['tracking_id'];
+                                                }
+                                                ?>
+                                            </td>
                                             <td id="status-<?php echo $row['orderid']; ?>"
                                                 class="<?php echo $statusColors[$row['status']]; ?>">
                                                 <?php echo $row['status']; ?></td>

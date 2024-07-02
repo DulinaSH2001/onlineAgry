@@ -142,11 +142,7 @@
 </head>
 
 <body>
-    <?php
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-    ?>
+
     <?php include 'header.php'; ?>
     <section class="product spad">
         <div class="container">
@@ -334,7 +330,7 @@
                                                     </div>
                                                     <div
                                                         class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-                                                        <!-- Include your tracking steps here -->
+
                                                     </div>
                                                 </div>
                                             </div>

@@ -21,7 +21,7 @@
                     if ($conform) {
 
                         // Update cart_status to 1
-                        $updateQuery = "UPDATE cart SET cart_status = 1 WHERE cartid = '$getcartid'";
+                        $updateQuery = "UPDATE cart SET cart_status = 1 , status ='pending'  WHERE cartid = '$getcartid'";
                         $updateResult = mysqli_query($connect, $updateQuery);
                         if ($updateResult) {
                             echo '

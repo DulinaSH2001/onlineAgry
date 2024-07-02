@@ -404,7 +404,7 @@
                                 <form action="search.php" method="get">
 
                                     <input type="text" name="search" class="rounded-left"
-                                        placeholder="What do you need?">
+                                        placeholder="What do you need?" required>
                                     <button type="submit" class="site-btn rounded-right">SEARCH</button>
                                 </form>
                                 <div class="hero__search__phone">

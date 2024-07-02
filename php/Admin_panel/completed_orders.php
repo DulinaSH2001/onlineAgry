@@ -4,74 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    function updateStatus(orderId, currentStatus) {
-        let newStatus;
-        switch (currentStatus) {
-            case 'Pending':
-                newStatus = 'Awaiting payment';
-                break;
-            case 'Awaiting payment':
-                newStatus = 'Processing';
-                break;
-            case 'Processing':
-                newStatus = 'Shipping';
-                break;
-            case 'Shipping':
-                newStatus = 'Delivered';
-                break;
-            default:
-                newStatus = 'Pending';
-        }
-
-        $.ajax({
-            url: 'update_order_status.php',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                orderid: orderId,
-                status: newStatus
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert('successed to update status: ');
-                    location.reload();
-                } else {
-                    alert('Failed to update status: ' + response.error);
-                }
-            },
-            error: function(xhr, status, error) {
-                alert('AJAX error: ' + error);
-            }
-        });
-    }
-
-    function deleteOrder(orderId) {
-        if (confirm('Are you sure you want to delete this order?')) {
-            $.ajax({
-                url: 'delete_order.php',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    orderid: orderId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert('Order deleted successfully.');
-                        location.reload();
-                    } else {
-                        alert('Failed to delete order: ' + response.error);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    alert('AJAX error: ' + error);
-                }
-            });
-        }
-    }
-    </script>
+    <title>Completed Orders</title>
 </head>
 
 <body>
@@ -83,7 +16,7 @@
                 <div class="col-md-12 grid-margin">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h4 class="font-weight-bold mb-0">New Orders</h4>
+                            <h4 class="font-weight-bold mb-0">Completed Orders</h4>
                         </div>
                     </div>
                 </div>
@@ -107,18 +40,15 @@
                                     </thead>
                                     <tbody>
                                         <?php
-$query = "SELECT * FROM orders WHERE status NOT IN ('Delivered','Cancelled') ORDER BY date DESC";
+include 'connect.php'; 
+
+$query = "SELECT * FROM orders WHERE status = 'Delivered' ORDER BY date DESC";
 $result = $connect->query($query);
 
 if ($result && $result->num_rows > 0) {
-    $statusColors = array(
-        'Pending' => 'text-primary',
-        'Awaiting payment' => 'text-warning',
-        'Processing' => 'text-info',
-        'Shipping' => 'text-success',
-        'Delivered' => 'text-danger'
-    );
-    while ($row = $result->fetch_assoc()): ?>
+?>
+
+                                        <?php while ($row = $result->fetch_assoc()): ?>
                                         <tr>
                                             <td><?php echo $row['orderid']; ?></td>
                                             <td>
@@ -134,27 +64,22 @@ if ($result && $result->num_rows > 0) {
                                                 }
                                                 ?>
                                             </td>
-                                            <td>Rs.<?php echo $row['tprice']; ?>.00</td>
-                                            <td><?php echo date('Y-m-d', strtotime($row['date'])); ?></td>
-
-                                            <td id="status-<?php echo $row['orderid']; ?>"
-                                                class="<?php echo $statusColors[$row['status']]; ?>">
-                                                <?php echo $row['status']; ?></td>
+                                            <td><?php echo $row['tprice']; ?></td>
+                                            <td><?php echo $row['date']; ?></td>
+                                            <td id="status-<?php echo $row['orderid']; ?>"><?php echo $row['status']; ?>
+                                            </td>
                                             <td>
                                                 <a href="orderdetails.php?order_id=<?php echo $row['orderid']; ?>"
                                                     class="btn btn-inverse-primary btn-fw">View Details</a>
-                                                <button
-                                                    onclick="updateStatus(<?php echo $row['orderid']; ?>, '<?php echo $row['status']; ?>')"
-                                                    class="btn btn-inverse-success btn-fw">Update Status</button>
                                                 <button onclick="deleteOrder(<?php echo $row['orderid']; ?>)"
                                                     class="btn btn-inverse-danger btn-fw">Delete</button>
-
                                             </td>
                                         </tr>
-                                        <?php endwhile;
-                                        
+                                        <?php endwhile; ?>
+
+                                        <?php
 } else {
-    echo "<tr><td colspan='7'>No orders found.</td></tr>";
+    echo "No completed orders found.";
 }
 
 $connect->close();

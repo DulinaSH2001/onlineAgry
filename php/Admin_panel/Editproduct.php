@@ -102,6 +102,11 @@
                             }
                             ?>
 
+                            <?php $sqlSubcategories = "SELECT * FROM subcategory WHERE subcatid = " . $product['subcatid'];
+                                    $resultSubcategories = $connect->query($sqlSubcategories);
+                                    $subcategories = [];
+                                    ?>
+
                             <form enctype="multipart/form-data" action="updateproduct.php" method="post"
                                 class="forms-sample">
                                 <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
@@ -131,6 +136,7 @@
                                 }
                                 ?>
 
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -138,10 +144,10 @@
                                             <div class="col-sm-9">
                                                 <select class="form-control form-control" name="category" id="category"
                                                     onchange="updateSubcategories()">
-                                                    <option>--select category--</option>
+                                                    <option value="">--select category--</option>
                                                     <?php foreach ($categories as $category): ?>
-
-                                                    <option value="<?php echo $category['catid']; ?>">
+                                                    <option value="<?php echo $category['catid']; ?>"
+                                                        <?php echo ($category['catid'] == $product['catid']) ? 'selected' : ''; ?>>
                                                         <?php echo $category['categoryname']; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -154,54 +160,52 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">SubCategory</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" name="subcategory" id="subcategory"
-                                                    required>
-                                                    <option>--select subcategory--</option>
+                                                <select class="form-control" name="subcategory" id="subcategory">
+                                                    <option value="">--select subcategory--</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Price :</label>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="price" name="price"
-                                                    step="0.01" value="<?php echo $product['price']; ?>" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Price :</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="price" name="price"
+                                                        step="0.01" value="<?php echo $product['price']; ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Qty:</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="qty" name="qty"
+                                                        step="0.01" value="<?php echo $product['qty']; ?>" required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Qty:</label>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="qty" name="qty"
-                                                    step="0.01" value="<?php echo $product['qty']; ?>" required>
-                                            </div>
-                                        </div>
+
+                                    <div class="form-group">
+                                        <label for="Logo_image">Logo image :</label>
+                                        <input type="file" class="form-control" id="Logo_image" name="Logo_image"
+                                            accept=".jpg, .jpeg, .png" onchange="readURL(this, 'logoImagePreview')">
+                                        <img id="logoImagePreview" src="#" alt="Logo Image Preview"
+                                            style="max-width: 200px; margin-top: 10px; display: none;">
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="Logo_image">Logo image :</label>
-                                    <input type="file" class="form-control" id="Logo_image" name="Logo_image"
-                                        accept=".jpg, .jpeg, .png" onchange="readURL(this, 'logoImagePreview')">
-                                    <img id="logoImagePreview" src="#" alt="Logo Image Preview"
-                                        style="max-width: 200px; margin-top: 10px; display: none;">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="more_image">More images: (add 2 or more images)</label>
+                                        <input type="file" class="form-control" id="more_image" name="more_image[]"
+                                            accept=".jpg, .jpeg, .png" onchange="readMultiURL(this, 'moreImagePreview')"
+                                            multiple>
+                                        <div id="moreImagePreview" style="margin-top: 10px;"></div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="more_image">More images: (add 2 or more images)</label>
-                                    <input type="file" class="form-control" id="more_image" name="more_image[]"
-                                        accept=".jpg, .jpeg, .png" onchange="readMultiURL(this, 'moreImagePreview')"
-                                        multiple>
-                                    <div id="moreImagePreview" style="margin-top: 10px;"></div>
-                                </div>
-
-                                <button type="submit" name="submit" class="btn btn-inverse-primary btn-fw">Update
-                                    Product</button>
+                                    <button type="submit" name="submit" class="btn btn-inverse-primary btn-fw">Update
+                                        Product</button>
                             </form>
 
                         </div>

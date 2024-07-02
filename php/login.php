@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie("password", $temppassword, time() + (60 * 60 * 24 * 365));
 
 
-            header("Location: product_List.php");
+            header("Location: index.php");
 
 
 
@@ -73,32 +73,32 @@ if (isset($_GET['signup'])) {
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .logincut {
-            padding: 59px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            width: 502px;
+    .logincut {
+        padding: 59px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 502px;
 
-        }
+    }
 
-        h2 {
-            text-align: center;
-        }
+    h2 {
+        text-align: center;
+    }
 
 
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
     </style>
 </head>
 
@@ -126,24 +126,28 @@ if (isset($_GET['signup'])) {
                                 <div class="form-group">
                                     <label for="password">Password:</label>
                                     <input type="password" id="password" name="password" required class="form-control">
+                                    <div class="input-group-append">
+                                        <a href="forgot_password.php" class="btn btn-link">Forgot Password?</a>
+                                    </div>
+
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                                        <label class="form-check-label" for="remember">Remember Me</label>
+                                        <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+                                        <label for="showPassword" class="form-check-label">Show Password</label>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-block">Login</button>
                                 </div>
+
                                 <div class="form-group">
-                                    <a href="Signup.php">
-                                        <!-- Replace with your actual signup page URL -->
-                                        <button type="button"
-                                            class="btn btn-outline-secondary btn-block">Signup</button>
-                                    </a>
+                                    <p>Don't have an account? <a href="Signup.php" class="text-primary">Sign
+                                            up</a></p>
                                 </div>
+
                             </form>
                         </div>
 
@@ -155,6 +159,16 @@ if (isset($_GET['signup'])) {
 
     <!-- Add Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById('password');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    }
+    </script>
     <?php include 'footer.php'; ?>
 </body>
 

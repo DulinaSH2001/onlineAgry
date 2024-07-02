@@ -9,23 +9,26 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     if (mysqli_num_rows($result) > 0) {
 
-        $productResult = mysqli_query($connect, "SELECT * FROM products WHERE subcategoryid = '$subcategoryId'");
+        $productResult = mysqli_query($connect, "SELECT * FROM products WHERE subcatid = '$subcategoryId'");
 
-        if (mysqli_num_rows($productResult) > 0) {
+        if ($productResult) {
 
-            echo '<script>alert("Cannot delete subcategory. There are products associated with it. Remove the products first.");';
-            echo 'window.location.href = "subcategory_table.php";</script>';
-            exit();
-        } else {
+            if (mysqli_num_rows($productResult) > 0) {
 
-            $sqlDeleteSubcategory = "DELETE FROM subcategory WHERE id = '$subcategoryId'";
-
-            if (mysqli_query($connect, $sqlDeleteSubcategory)) {
-
-                header("Location: subcategory_table.php");
+                echo '<script>alert("Cannot delete subcategory. There are products associated with it. Remove the products first.");';
+                echo 'window.location.href = "sub_category_table.php";</script>';
                 exit();
             } else {
-                echo "Error deleting subcategory: " . mysqli_error($connect);
+
+                $sqlDeleteSubcategory = "DELETE FROM subcategory WHERE subcatid = '$subcategoryId'";
+
+                if (mysqli_query($connect, $sqlDeleteSubcategory)) {
+
+                    header("Location: sub_category_table.php");
+                    exit();
+                } else {
+                    echo "Error deleting subcategory: " . mysqli_error($connect);
+                }
             }
         }
     } else {
@@ -36,5 +39,4 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 mysqli_close($connect);
-
 ?>

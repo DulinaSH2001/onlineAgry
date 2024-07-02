@@ -107,71 +107,46 @@
                                         Category </a></li>
                                 <li class="nav-item"> <a class="nav-link" href="add_subcategory.php">Add
                                         Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">
+                                <li class="nav-item"> <a class="nav-link" href="category_table.php">
                                         Category Table</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">
-                                        SubCategory Table</Table></a></li>
+                                <li class="nav-item"> <a class="nav-link" href="sub_category_table.php">
+                                        SubCategory Table</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basi" aria-expanded="false"
-                            aria-controls="ui-basic">
+                            aria-controls="ui-basi">
                             <i class="ti-book menu-icon"></i>
-                            <span class="menu-title">Orders management </span>
+                            <span class="menu-title">Orders Management</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basi">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="New_oredrs.php">New
+                                <li class="nav-item"> <a class="nav-link" href="New_oredrs.php">New Orders</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="tracking_manage.php">Tracking
                                         Orders</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Tracking
-                                        Orders </a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="pages/ui-features/typography.html">Complete orders </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="completed_orders.php">Complete
+                                        Orders</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
-                            <i class="ti-view-list-alt menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/themify.html">
-                            <i class="ti-star menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
-                            aria-controls="auth">
-                            <i class="ti-user menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basi2" aria-expanded="false"
+                            aria-controls="ui-basi2">
+                            <i class="ti-book menu-icon"></i>
+                            <span class="menu-title">Banner Management</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="auth">
+                        <div class="collapse" id="ui-basi2">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a>
+                                <li class="nav-item"> <a class="nav-link" href="add_banner_form.php">Add Banner</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="manage_banner.php">Manage Banners</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2
-                                    </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register
-                                    </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html">
-                                        Register 2 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html">
-                                        Lockscreen </a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="documentation/documentation.html">
-                            <i class="ti-write menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
             <!-- partial -->

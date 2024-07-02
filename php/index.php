@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    .body {
+        background-color: #f5f5f5;
+    }
+
     .fa-tag:before,
     .fa-life-ring:before,
     .fa-truck:before,
@@ -45,7 +49,7 @@
                             <div class="carousel-inner">
                                 <?php
 
-                                // Fetch all banner images data
+                                
                                 $sqlSelectBannerImages = "SELECT * FROM banner_images";
                                 $result = mysqli_query($connect, $sqlSelectBannerImages);
 
@@ -254,8 +258,57 @@
             </div>
         </div>
     </section>
-    <!-- Latest Product Section Begin -->
-    <!-- Latest Product Section Begin -->
+    <section class="mt-5 mb-4">
+        <div class="container text-dark">
+            <header class="">
+                <h3 class="section-title">Recently viewed</h3>
+            </header>
+
+            <div class="row gy-3">
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/2.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail"
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/6.webp" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
