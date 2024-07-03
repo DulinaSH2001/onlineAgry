@@ -231,8 +231,7 @@ if (isset($_GET['order_id'])) {
                             ?>
                         </div>
                         <div class="invoice-detail">
-                            #0000
-                            <?= $orderId ?><br>
+                            #0000<?= $orderId ?><br>
 
                         </div>
                     </div>
@@ -295,15 +294,16 @@ if (isset($_GET['order_id'])) {
                 <!-- end invoice-content -->
                 <!-- begin invoice-note -->
                 <div class="invoice-note">
-                    * Make all cheques payable to [Your Company Name]<br>
+                    * Make all cheques payable to Saradha Lanaka Agro<br>
                     * Payment is due within 30 days<br>
-                    * If you have any questions concerning this invoice, contact [Name, Phone Number, Email]
+                    * If you have any questions concerning this invoice, contact
+                    [Saman,0718318313,saradhalanakaagro@gmail.com]
                 </div>
                 <!-- end invoice-note -->
                 <!-- begin invoice-footer -->
                 <div class="invoice-footer">
                     <p class="text-center m-b-5 f-w-600">
-                        THANK YOU FOR YOUR BUSINESS
+                        THANK YOU
                     </p>
                     <p class="text-center">
                         <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> saradhalanakaagro.com</span>

@@ -101,6 +101,7 @@
                                             <th>Customer Name</th>
                                             <th>Total Price</th>
                                             <th>Order Date</th>
+                                            <th>Delivery Company</th>
                                             <th>Tracking ID</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -137,6 +138,13 @@ if ($result && $result->num_rows > 0) {
                                             </td>
                                             <td><?php echo $row['tprice']; ?></td>
                                             <td><?php echo date('Y-m-d', strtotime($row['date'])); ?></td>
+                                            <td> <?php 
+                                                if ($row['company_name'] == null) {
+                                                    echo "Not started delivery";
+                                                } else {
+                                                    echo $row['company_name'];
+                                                }
+                                                ?></td>
                                             <td>
                                                 <?php 
                                                 if ($row['tracking_id'] == null) {
@@ -152,9 +160,8 @@ if ($result && $result->num_rows > 0) {
                                             <td>
                                                 <a href="orderdetails.php?order_id=<?php echo $row['orderid']; ?>"
                                                     class="btn btn-inverse-primary btn-fw">View Details</a>
-                                                <button
-                                                    onclick="updateStatus(<?php echo $row['orderid']; ?>, '<?php echo $row['status']; ?>')"
-                                                    class="btn btn-inverse-success btn-fw">Update Status</button>
+                                                <a href="add_tracking_id.php?order_id=<?php echo $row['orderid']; ?>"
+                                                    class="btn btn-inverse-success btn-fw">Add Tracking ID</a>
                                                 <button onclick="deleteOrder(<?php echo $row['orderid']; ?>)"
                                                     class="btn btn-inverse-danger btn-fw">Delete</button>
 
