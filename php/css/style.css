@@ -2907,6 +2907,10 @@ ol {
 	letter-spacing: 2px;
 }
 
+.space-between {
+	justify-content: flex-start;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
@@ -3473,3 +3477,4 @@ ol {
 		font-size: 24px;
 	}
 }
+

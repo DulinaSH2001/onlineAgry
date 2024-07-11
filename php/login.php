@@ -5,13 +5,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tempusername = $_POST['email'];
     $temppassword = $_POST['password'];
 
-    if ($tempusername == 'dulinaAdmin@gamil.com' && $temppassword == 'admindulina@2001') {
+    if ($tempusername == 'SLAadmin@admin.com' && $temppassword == 'admin123') {
         header('Location: Admin_panel/dashboard.php');
 
 
     } else {
 
-        $sql = "SELECT * FROM users WHERE (username = '$tempusername' OR email = '$tempusername') AND (password = '$temppassword');";
+        $sql = "SELECT * FROM users WHERE (email = '$tempusername') AND (password = '$temppassword');";
         $result = mysqli_query($connect, $sql);
 
         if ($result && $result->num_rows == 1) {
@@ -75,10 +75,8 @@ if (isset($_GET['signup'])) {
     <style>
     .logincut {
         padding: 59px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
+        border-radius: 20px;
         width: 502px;
-
     }
 
     h2 {
@@ -116,7 +114,7 @@ if (isset($_GET['signup'])) {
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <div class="profile-form">
-                        <div class="logincut">
+                        <div class="logincut shadow mb-5 bg-body">
                             <h2>Login</h2>
                             <form action="login.php" method="POST">
                                 <div class="form-group">
@@ -126,16 +124,21 @@ if (isset($_GET['signup'])) {
                                 <div class="form-group">
                                     <label for="password">Password:</label>
                                     <input type="password" id="password" name="password" required class="form-control">
-                                    <div class="input-group-append">
+
+
+                                </div>
+                                <div class="row space-between">
+                                    <div style="display: flex; justify-content: flex-start; align-items: center;"
+                                        class="col-6">
+
+                                        <input type="checkbox" class="col-2" id="showPassword"
+                                            onclick="togglePasswordVisibility()">
+                                        <div for="showPassword" class="col-10">Show Password</div>
+                                    </div>
+                                    <div class="input-group-append col-6">
                                         <a href="forgot_password.php" class="btn btn-link">Forgot Password?</a>
                                     </div>
 
-                                </div>
-                                <div class="">
-                                    <div class="form-check">
-                                        <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
-                                        <label for="showPassword" class="form-check-label">Show Password</label>
-                                    </div>
                                 </div>
 
 
