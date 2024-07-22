@@ -13,6 +13,11 @@ include 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sign up </title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+    .container {
+        border-radius: 20px;
+    }
+    </style>
 
 
 </head>
@@ -31,38 +36,48 @@ include 'connect.php';
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <div class="profile-form">
-                        <div class="container">
+                        <div class="container p-4 shadow ">
                             <form action="Signup.php" method='post' class="mt-5">
-                                <div class="form-group">
-                                    <label for="firstname">First name:</label>
-                                    <input type="text" class="form-control" name="Fname">
+                                <div class="row ">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="firstname">First name:</label>
+                                            <input type="text" class="form-control" name="Fname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dob">Date of birth:</label>
+                                            <input type="date" class="form-control" name="dob">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Mobile">Mobile number:</label>
+                                            <input type="tel" class="form-control" name="tel">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Username">Username:</label>
+                                            <input type="text" class="form-control" name="username">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="Lastname">Last name:</label>
+                                            <input type="text" class="form-control" name="Lname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="text" class="form-control" name="email">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="Password">Password:</label>
+                                            <input type="password" class="form-control" name="password">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Register</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Lastname">Last name:</label>
-                                    <input type="text" class="form-control" name="Lname">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dob">Date of birth:</label>
-                                    <input type="date" class="form-control" name="dob">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Mobile">Mobile number:</label>
-                                    <input type="tel" class="form-control" name="tel">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Username">Username:</label>
-                                    <input type="text" class="form-control" name="username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Password">Password:</label>
-                                    <input type="password" class="form-control" name="password">
-                                </div>
-                                <button type="submit" class="btn btn-success">Register</button>
-                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             </form>
                         </div>
                     </div>

@@ -111,17 +111,39 @@
                                 class="forms-sample">
                                 <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
 
-                                <!-- Existing product details go here -->
+
                                 <div class="form-group">
                                     <label for="product_name">Product Name:</label>
                                     <input type="text" class="form-control" id="product_name" name="name"
                                         value="<?php echo $product['name']; ?>" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="description">Description:</label>
-                                    <textarea class="form-control form-control-" id="description" name="description"
-                                        rows="6" required><?php echo $product['description']; ?></textarea>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="description">Description:</label>
+                                            <textarea class="form-control form-control-" placeholder="Enter description"
+                                                id="description" name="description" rows="3"
+                                                required><?php echo $product['description']; ?></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product_name">Weight</label>
+                                            <input type="text" class="form-control" id="weight" name="weight"
+                                                placeholder="1.0 Kg" value="<?php echo $product['weight']; ?>" required>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="product_name">Products Infomation</label>
+                                            <textarea class="form-control form-control-"
+                                                placeholder="Enter products infomation" id="product_info"
+                                                name="product_info" rows="10"
+                                                required><?php echo $product['product_info']; ?></textarea>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <?php

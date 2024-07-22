@@ -191,10 +191,11 @@
                 <div class="col-lg-10">
                     <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
+                            <span>Tractors, Powersprayers, Brushcutters, and More</span>
+                            <h2>Quality</br> You Can Rely On </h2>
+                            <p>Pickup and Delivery Available</p>
                             <a href="product_List.php" class="btn primary-btn rounded ">SHOP NOW</a>
+
                         </div>
                     </div>
                 </div>
@@ -203,112 +204,8 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <!-- Product 1 -->
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
 
-                            <!-- Product 2 -->
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
 
-                            <!-- Product 3 -->
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Repeat the above structure for additional products within the slider -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="mt-5 mb-4">
-        <div class="container text-dark">
-            <header class="">
-                <h3 class="section-title">Recently viewed</h3>
-            </header>
-
-            <div class="row gy-3">
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp" />
-                    </a>
-                </div>
-                <!-- col.// -->
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/2.webp" />
-                    </a>
-                </div>
-                <!-- col.// -->
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp" />
-                    </a>
-                </div>
-                <!-- col.// -->
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp" />
-                    </a>
-                </div>
-                <!-- col.// -->
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp" />
-                    </a>
-                </div>
-                <!-- col.// -->
-                <div class="col-lg-2 col-md-4 col-4">
-                    <a href="#" class="img-wrap">
-                        <img height="200" width="200" class="img-thumbnail"
-                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/6.webp" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
@@ -319,12 +216,12 @@
 
                             <div class="latest-prdouct__slider__item">
                                 <?php
-                            // Assuming you have a connection to your database ($connect)
+                         
                             include 'connect.php';
 
                             $sqlSelectLatestProducts = "SELECT pid, name, price FROM products
                                                         ORDER BY created_at DESC
-                                                        LIMIT 6"; // Limit to 6 latest products for example
+                                                        LIMIT 6"; 
                             
                             $resultLatestProducts = mysqli_query($connect, $sqlSelectLatestProducts);
 
@@ -370,7 +267,7 @@
 
 
 
-    <!-- Blog Section End -->
+
     <?php include 'footer.php'; ?>
 
 </body>

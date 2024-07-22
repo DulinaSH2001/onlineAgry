@@ -107,7 +107,7 @@
                         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                         $offset = ($currentPage - 1) * $limit;
                         if ($searchTerm) {
-                            $sqlProducts = "SELECT * FROM products WHERE name LIKE '%$searchTerm%' ORDER BY price $sortOrder LIMIT $offset, $limit";
+                            $sqlProducts = "SELECT * FROM products WHERE name LIKE '%$searchTerm%' AND stock = 1 ORDER BY price $sortOrder LIMIT $offset, $limit";
                             $resultProducts = mysqli_query($connect, $sqlProducts);
                                     $rowCount = mysqli_num_rows($resultProducts);;
                                     ?>

@@ -98,7 +98,7 @@
                                 <div class="filter__found">
                                     <?php
                                     
-                                    $sqlCount = "SELECT COUNT(*) AS total FROM products";
+                                    $sqlCount = "SELECT COUNT(*) AS total FROM products WHERE stock = 1";
                                     $resultCount = mysqli_query($connect, $sqlCount);
                                     $rowCount = mysqli_fetch_assoc($resultCount)['total'];
                                     ?>
@@ -129,7 +129,7 @@
                         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                         $offset = ($currentPage - 1) * $limit;
 
-                        $sqlProducts = "SELECT * FROM products ORDER BY price $sortOrder LIMIT $offset, $limit ";
+                        $sqlProducts = "SELECT * FROM products  WHERE stock = 1 ORDER BY price $sortOrder LIMIT $offset, $limit ";
                         $resultProducts = mysqli_query($connect, $sqlProducts);
 
                         while ($product = $resultProducts->fetch_assoc()) {

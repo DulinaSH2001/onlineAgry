@@ -86,9 +86,9 @@
                                     <select onchange="location = this.value;">
                                         |
 
-                                        <option value="product_List.php?sort=asc"
+                                        <option value="category_product.php?sort=asc"
                                             <?php if ($sortOrder == 'asc') echo 'selected'; ?>>Low to High</option>
-                                        <option value="product_List.php?sort=desc"
+                                        <option value="category_product.php?sort=desc"
                                             <?php if ($sortOrder == 'desc') echo 'selected'; ?>>High to Low</option>
                                     </select>
                                 </div>
@@ -106,10 +106,10 @@
                         $offset = ($currentPage - 1) * $limit;
                         if ($selectedCategory) {
                             // Use the selected category to filter products
-                            $sqlProducts = "SELECT * FROM products WHERE catid = '$selectedCategory' ORDER BY price $sortOrder LIMIT $offset, $limit";
+                            $sqlProducts = "SELECT * FROM products WHERE catid = '$selectedCategory' AND stock = 1 ORDER BY price $sortOrder LIMIT $offset, $limit";
                         } else {
                             // No category selected, retrieve all products
-                            $sqlProducts = "SELECT * FROM products ORDER BY price $sortOrder LIMIT $offset, $limit";
+                            $sqlProducts = "SELECT * FROM products AND stock = 1 ORDER BY price $sortOrder LIMIT $offset, $limit";
                         }
                         
 

@@ -9,14 +9,15 @@ if (isset($_POST['submit'])) {
     $subcatid = $_POST['subcategory'];
     $price = $_POST['price'];
     $qty = $_POST['qty'];
+    $weight = $_POST['weight'];
+    $product_info = $_POST['product_info'];
 
     // Update product details in the 'products' table
-    $updateProductQuery = "UPDATE products SET name = ?, description = ?, catid = ?, subcatid = ?, price = ?, qty = ? WHERE pid = ?";
+    $updateProductQuery = "UPDATE products SET name = ?, description = ?, catid = ?, subcatid = ?, price = ?, qty = ?, weight = ?, product_info = ? WHERE pid = ?";
     $stmt = mysqli_prepare($connect, $updateProductQuery);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, 'ssssssi', $name, $description, $catid, $subcatid, $price, $qty, $productId);
-
+        mysqli_stmt_bind_param($stmt, 'ssssssssi', $name, $description, $catid, $subcatid, $price, $qty, $weight, $product_info, $productId);
         if (mysqli_stmt_execute($stmt)) {
             // Update successful
 

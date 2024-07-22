@@ -13,7 +13,7 @@
         <?php
 
         // Query to get the number of orders
-        $orderQuery = "SELECT COUNT(*) AS orderCount FROM orders WHERE date >= NOW() - INTERVAL 30 DAY";
+        $orderQuery = "SELECT COUNT(*) AS orderCount FROM orders WHERE date >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
         $orderResult = $connect->query($orderQuery);
         $orderRow = $orderResult->fetch_assoc();
         $numberOfOrders = $orderRow['orderCount'];
@@ -46,9 +46,17 @@
                                 <h4 class="font-weight-bold mb-0">RoyalUI Dashboard</h4>
                             </div>
                             <div><a href="addproduct.php">
-                                    <button type="button" class="btn btn-primary btn-icon-text ">
+                                    <button type="button" class="btn btn-primary btn-icon-text text-white ">
                                         <i class="ti-clipboard btn-icon-prepend"></i>add
                                         product
+                                    </button></a>
+                                <a href="New_oredrs.php">
+                                    <button type="button" class="btn btn-success btn-icon-text text-white">
+                                        <i class="ti-clipboard btn-icon-prepend"></i>New Orders
+                                    </button></a>
+                                <a href="producttable.php">
+                                    <button type="button" class="btn btn-warning  btn-icon-text text-white">
+                                        <i class="ti-clipboard btn-icon-prepend"></i>All Products
                                     </button></a>
                             </div>
                         </div>
@@ -56,7 +64,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 grid-margin stretch-card">
-                        <div class="card">
+                        <div class="card ">
                             <div class="card-body">
                                 <p class="card-title text-md-center text-xl-left">numbers of orders</p>
                                 <div

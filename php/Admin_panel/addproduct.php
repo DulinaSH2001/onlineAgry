@@ -77,7 +77,7 @@
             </div>
             <div class="row">
                 <div class="col-12 grid-margin stretch-card">
-                    <div class="card">
+                    <div class="card rounded">
                         <div class="card-body">
                             <h4 class="card-title">Add Product with Images</h4>
                             <p class="card-description">
@@ -91,13 +91,34 @@
 
                                 <div class="form-group">
                                     <label for="product_name">Product Name:</label>
-                                    <input type="text" class="form-control" id="product_name" name="name" required>
+                                    <input type="text" class="form-control" placeholder="Enter product name "
+                                        id="product_name" name="name" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="description">Description:</label>
-                                    <textarea class="form-control form-control-" id="description" name="description"
-                                        rows="6" required></textarea>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="description">Description:</label>
+                                            <textarea class="form-control form-control-" placeholder="Enter description"
+                                                id="description" name="description" rows="3" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product_name">Weight(Kg)</label>
+                                            <input type="text" class="form-control" id="weight" name="weight"
+                                                placeholder="1.0 Kg" required>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="product_name">Products Infomation</label>
+                                            <textarea class="form-control form-control-"
+                                                placeholder="Enter products infomation" id="product_info"
+                                                name="product_info" rows="10" required></textarea>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <?php
@@ -138,7 +159,7 @@
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="subcategory" id="subcategory"
                                                     required>
-                                                    <option>--select subcategory--</option>
+                                                    <option class="form-control">--select subcategory--</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -206,10 +227,13 @@
                 $subcatid = $_POST['subcategory'];
                 $price = $_POST['price'];
                 $qty = $_POST['qty'];
+                $weight = $_POST['weight'];
+                $product_info = $_POST['product_info'];
 
 
 
-                $sql1 = "INSERT INTO products (name, description, catid, subcatid, price, qty) VALUES ('$name', '$description', '$catid', '$subcatid', '$price', '$qty')";
+
+                $sql1 = "INSERT INTO products (name, description, catid, subcatid, price, qty ,weight,product_info) VALUES ('$name', '$description', '$catid', '$subcatid', '$price', '$qty', '$weight', '$product_info')";
 
 
 
