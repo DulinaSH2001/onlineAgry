@@ -22,7 +22,7 @@
                                 <input type="email" id="email" name="email" required class="form-control">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+                                <button type="submit" class="btn btn-success btn-block">Send Reset Link</button>
                             </div>
                         </form>
                     </div>

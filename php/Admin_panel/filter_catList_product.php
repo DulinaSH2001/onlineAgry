@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQ9bs0YO6Fh7CBK3IeJW7qDJ9U9C9ApeP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Product Table</title>
 </head>
 
@@ -100,67 +99,61 @@
 
 
                 <script>
-                function updateStock(productId) {
-                    // Add your logic for updating stock
-                    console.log("Updating stock for Product ID: " + productId);
+                    function updateStock(productId) {
+                        // Add your logic for updating stock
+                        console.log("Updating stock for Product ID: " + productId);
 
-                    // Here, you can make an AJAX request to update the stock in the database
-                    $.ajax({
-                        type: "POST",
-                        url: "updatestock.php", // Create a PHP file to handle the update
-                        data: {
-                            productId: productId
-                        },
-                        success: function(response) {
-                            console.log(response);
-                            $('#productTable').load('producttable.php #productTable');
+                        // Here, you can make an AJAX request to update the stock in the database
+                        $.ajax({
+                            type: "POST",
+                            url: "updatestock.php", // Create a PHP file to handle the update
+                            data: {
+                                productId: productId
+                            },
+                            success: function (response) {
+                                console.log(response);
+                                $('#productTable').load('producttable.php #productTable');
 
-                        },
-                        error: function(error) {
-                            console.error(error);
-                            // Handle the error if the update fails
-                        }
-                    });
-                }
+                            },
+                            error: function (error) {
+                                console.error(error);
+                                // Handle the error if the update fails
+                            }
+                        });
+                    }
 
-                function toggleStock(productId) {
-                    // Add your logic for toggling in-stock/out-stock status
-                    console.log("Toggling stock for Product ID: " + productId);
+                    function toggleStock(productId) {
+                        // Add your logic for toggling in-stock/out-stock status
+                        console.log("Toggling stock for Product ID: " + productId);
 
-                    // Here, you can make an AJAX request to toggle the stock status in the database
-                    $.ajax({
-                        type: "POST",
-                        url: "togglestock.php", // Create a PHP file to handle the toggle
-                        data: {
-                            productId: productId
-                        },
-                        success: function(response) {
-                            console.log(response);
-                            location.reload(true);
+                        // Here, you can make an AJAX request to toggle the stock status in the database
+                        $.ajax({
+                            type: "POST",
+                            url: "togglestock.php", // Create a PHP file to handle the toggle
+                            data: {
+                                productId: productId
+                            },
+                            success: function (response) {
+                                console.log(response);
+                                location.reload(true);
 
-                        },
-                        error: function(error) {
-                            console.error(error);
-                            // Handle the error if the toggle fails
-                        }
-                    });
-                }
+                            },
+                            error: function (error) {
+                                console.error(error);
+                                // Handle the error if the toggle fails
+                            }
+                        });
+                    }
                 </script>
 
 
 
 
-                <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
-                    integrity="sha384-u7U/VuhEEG9byKJb7wceFFcfdsHOnhGGpzDJwVl5qowmqu/6+jFVEeuU9fWOlZ+1"
-                    crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js">
                 </script>
-                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-                    integrity="sha384-oMqFNp6Ew94ZCDYuxFnFyZQL+I3EmuKl3wZ5f+C7XkhfXTsk70ug/6UElRU5eME6"
-                    crossorigin="anonymous">
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js">
                 </script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQ9bs0YO6Fh7CBK3IeJW7qDJ9U9C9ApeP"
-                    crossorigin="anonymous">
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
                 </script>
 </body>
 
